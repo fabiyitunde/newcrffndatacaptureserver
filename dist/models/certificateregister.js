@@ -12,7 +12,7 @@ exports.CertificateRegisterSchema = new mongoose.Schema({
         required: true
     },
     category: {
-        type: String,
+        type: { code: Number, description: String },
         required: true
     },
     status: {

@@ -11,7 +11,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = require("mongoose");
 const parameters_1 = require("../models/parameters");
 const StateTable = mongoose.model("StateTable", parameters_1.statetableSchema);
+const LGATable = mongoose.model("LGATable", parameters_1.lgatableSchema);
 exports.getStateList = () => __awaiter(this, void 0, void 0, function* () {
     return yield StateTable.find().sort("description");
+});
+exports.getLGAList = () => __awaiter(this, void 0, void 0, function* () {
+    return yield LGATable.find().sort("description");
 });
 //# sourceMappingURL=parameterQueries.js.map

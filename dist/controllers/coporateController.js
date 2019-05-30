@@ -14,6 +14,7 @@ const submitCorporateData_1 = require("../commands/coporate/submitCorporateData"
 const approveCoporateData_1 = require("../commands/coporate/approveCoporateData");
 const returnCoporateData_1 = require("../commands/coporate/returnCoporateData");
 const coporateDataQueries_1 = require("../queries/coporateDataQueries");
+const certificateRegisterQueries_1 = require("../queries/certificateRegisterQueries");
 class CoporateController {
     createCoporateData(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -86,6 +87,39 @@ class CoporateController {
                 const { membershipnumber } = req.params;
                 var returnobj = yield coporateDataQueries_1.getCoporateDataByCRFFNNumber(membershipnumber);
                 res.status(200).json(returnobj);
+            }
+            catch (error) {
+                res.status(400).send(error);
+            }
+        });
+    }
+    getCoporateMemeberListIssuedCertificates(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                var returnlist = yield certificateRegisterQueries_1.getCoporateMemeberListIssuedCertificates();
+                res.status(200).json(returnlist);
+            }
+            catch (error) {
+                res.status(400).send(error);
+            }
+        });
+    }
+    getUnSubmittedCoporateDataList(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                var returnlist = yield coporateDataQueries_1.getUnSubmittedCoporateDataList();
+                res.status(200).json(returnlist);
+            }
+            catch (error) {
+                res.status(400).send(error);
+            }
+        });
+    }
+    getUnApprovedCoporateDataList(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                var returnlist = yield coporateDataQueries_1.getUnApprovedCoporateDataList();
+                res.status(200).json(returnlist);
             }
             catch (error) {
                 res.status(400).send(error);

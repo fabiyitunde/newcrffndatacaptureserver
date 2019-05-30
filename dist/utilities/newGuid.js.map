@@ -1,0 +1,1 @@
+{"version":3,"file":"newGuid.js","sourceRoot":"","sources":["../../utilities/newGuid.ts"],"names":[],"mappings":";;AAAA,iCAAiC;AACjC,gCAAgC;AAEnB,QAAA,UAAU,GAAG,GAAG,EAAE;IAC7B,MAAM,QAAQ,GAAG,MAAM,EAAE,CAAC;IAC1B,MAAM,OAAO,GAAG,IAAI,CAAC,QAAQ,EAAE,IAAI,CAAC,GAAG,CAAC,CAAC;IACzC,OAAO,OAAO,CAAC;AACjB,CAAC,CAAC"}

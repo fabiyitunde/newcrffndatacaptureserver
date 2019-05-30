@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const coporatedata_1 = require("../models/coporatedata");
+const parameters_1 = require("../parameters");
 const mongoose = require("mongoose");
 const CoporateData = mongoose.model("CoporateData", coporatedata_1.CoporateDataSchema);
 exports.getCoporateDataByCRFFNNumber = (membershipnumber) => __awaiter(this, void 0, void 0, function* () {
@@ -16,5 +17,17 @@ exports.getCoporateDataByCRFFNNumber = (membershipnumber) => __awaiter(this, voi
         membershipnumber: membershipnumber
     });
     return existingrec;
+});
+exports.getUnSubmittedCoporateDataList = () => __awaiter(this, void 0, void 0, function* () {
+    var existinglist = yield CoporateData.find({
+        status: parameters_1.dataCaptureRegistrationStatus.Pending
+    });
+    return existinglist;
+});
+exports.getUnApprovedCoporateDataList = () => __awaiter(this, void 0, void 0, function* () {
+    var existinglist = yield CoporateData.find({
+        status: parameters_1.dataCaptureRegistrationStatus.Submitted
+    });
+    return existinglist;
 });
 //# sourceMappingURL=coporateDataQueries.js.map

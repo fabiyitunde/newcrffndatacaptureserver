@@ -5,29 +5,29 @@ export const registerCoporateRoutes = app => {
   var coporateController: CoporateController = new CoporateController();
   app
     .route("/api/coporate/createCoporateData")
-    .post(coporateController.createCoporateData);
+    .post([Auth, coporateController.createCoporateData]);
   app
     .route("/api/coporate/updateCorporateData")
-    .post(coporateController.updateCorporateData);
+    .post([Auth, coporateController.updateCorporateData]);
   app
     .route("/api/coporate/submitCorporateData")
-    .post(coporateController.submitCorporateData);
+    .post([Auth, coporateController.submitCorporateData]);
   app
     .route("/api/coporate/returnCoporateData")
-    .post(coporateController.returnCoporateData);
+    .post([Auth, coporateController.returnCoporateData]);
   app
     .route("/api/coporate/approveCoporateData")
-    .post(coporateController.approveCoporateData);
+    .post([Auth, coporateController.approveCoporateData]);
   app
     .route("/api/coporate/getCoporateDataByMemebershipId/:membershipnumber")
-    .get(coporateController.getCoporateDataByMemebershipId);
+    .get([Auth, coporateController.getCoporateDataByMemebershipId]);
   app
     .route("/api/coporate/getCoporateMemeberListIssuedCertificates")
-    .post(coporateController.getCoporateMemeberListIssuedCertificates);
+    .post([Auth, coporateController.getCoporateMemeberListIssuedCertificates]);
   app
     .route("/api/coporate/getUnApprovedCoporateDataList")
-    .post(coporateController.getUnApprovedCoporateDataList);
+    .post([Auth, coporateController.getUnApprovedCoporateDataList]);
   app
     .route("/api/coporate/getUnSubmittedCoporateDataList")
-    .post(coporateController.getUnSubmittedCoporateDataList);
+    .post([Auth, coporateController.getUnSubmittedCoporateDataList]);
 };

@@ -845,3 +845,6 @@
 {"level":"info","message":"Listening on port 3000...","timestamp":"2018-08-30T12:25:51.841Z"}
 {"level":"info","message":"Listening on port 3000...","timestamp":"2019-03-27T18:02:59.519Z"}
 {"level":"info","message":"Listening on port 3000...","timestamp":"2019-05-22T10:33:28.950Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2019-05-23T06:59:20.084Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2019-05-23T07:00:14.329Z"}
+{"level":"info","message":"Connected to mongodb://localhost/crffncapturedb...","timestamp":"2019-05-23T07:00:15.433Z"}

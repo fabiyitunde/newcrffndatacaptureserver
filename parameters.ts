@@ -35,7 +35,11 @@ export const postalChannels = {
   crffnDataCapture: "crffnDataCapture"
 };
 export const postalTopics = {
-  coporateDataCaptureApproved: "coporateDataCaptureApproved"
+  coporateDataCaptureApproved: "coporateDataCaptureApproved",
+  individualDataCaptureApproved: "individualDataCaptureApproved",
+  corporateForwarderUpdated: "corporateForwarderUpdated",
+  individualForwarderUpdated: "individualForwarderUpdated",
+  certificateRegisterApproved: "certificateRegisterApproved"
 };
 export const FreightForwaderCategory = {
   Staff: 1,
@@ -54,5 +58,42 @@ export const FreightForwaderCategory = {
       default:
         return "ServiceProvider";
     }
+  },
+
+  // getList: () => {
+  //   return Object.keys(FreightForwaderCategory);
+    
+  // }
+};
+
+export const forwarderRecordStatus = {
+  Pending: 1,
+  Treated: 2,
+  getDescription: (value: number) => {
+    switch (value) {
+      case 1:
+        return "Pending";
+      default:
+        return "Treated";
+      
+    }
   }
 };
+
+export const userType = {
+  Admin: 1,
+  DataEntry: 2,
+  Approval: 3,
+  getDescription: (value: number) => {
+    switch (value) {
+      case 1:
+        return { id: value, description: "Admin" };
+      case 2:
+        return { id: value, description: "Data Entry" };
+      default:
+        return { id: value, description: "Approval" };
+    }
+  }
+};
+
+
