@@ -21,9 +21,10 @@ export const corporateForwarderUpdatedEventHandler = () => {
 const CreateCertificateRegister = async (eventobj: any) => {
     const body = {
         membershipnumber: eventobj.membershipnumber,
-        companyname: eventobj.companyname,
+        name: eventobj.companyname,
         category: eventobj.category,
+        userid: eventobj.userid
     }
-    createCertificateRegister(body.membershipnumber, body.companyname, body.category);
+    createCertificateRegister(body.membershipnumber, body.name, body.category, body.userid);
 }; 
 

@@ -20,7 +20,8 @@ const CreateCertificateRegister = async (eventobj: any) => {
         membershipnumber: eventobj.membershipnumber,
         name: eventobj.name,
         category: eventobj.category,
+        userid: eventobj.userid
     }
-    createCertificateRegister(body.membershipnumber, body.name, body.category);
+    createCertificateRegister(body.membershipnumber, body.name, body.category, body.userid);
 };
 

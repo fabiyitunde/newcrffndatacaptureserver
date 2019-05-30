@@ -28,6 +28,6 @@ export const registerCoporateRoutes = app => {
     .route("/api/coporate/getUnApprovedCoporateDataList")
     .post([Auth, coporateController.getUnApprovedCoporateDataList]);
   app
-    .route("/api/coporate/getUnSubmittedCoporateDataList")
+    .route("/api/coporate/getUnSubmittedCoporateDataList/:userid")
     .post([Auth, coporateController.getUnSubmittedCoporateDataList]);
 };

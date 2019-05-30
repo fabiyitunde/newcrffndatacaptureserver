@@ -33,9 +33,10 @@ export const getIndividualMemeberListIssuedCertificates = async () => {
   return existinlist;
 };
 
-export const getUnSubmittedCertificateRegisterList = async () => {
+export const getUnSubmittedCertificateRegisterList = async (userid: string) => {
   var existinglist: any = await CertificateRegister.find({
-      status: CertificateRegisterStatus.Pending
+      status: CertificateRegisterStatus.Pending,
+      userid: userid
   });
   return existinglist;
 };

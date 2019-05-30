@@ -27,7 +27,8 @@ export class IndividualController {
                 statecode,
                 lgacode,
                 typeofid,
-                idcardnumber
+                idcardnumber,
+                userid
             } = req.body;
 
             await createIndividualData(
@@ -42,7 +43,8 @@ export class IndividualController {
                 statecode,
                 lgacode,
                 typeofid,
-                idcardnumber
+                idcardnumber,
+                userid
             );
             var returndetail = await getIndividualDataByCRFFNNumber(membershipnumber);
             res.status(200).json(returndetail);
@@ -141,7 +143,8 @@ export class IndividualController {
     }
     public async getUnSubmittedIndividualDataList(req: Request, res: Response) {
         try {
-            var returnlist = await getUnSubmittedIndividualDataList();
+            const { userid } = req.params;
+            var returnlist = await getUnSubmittedIndividualDataList(userid);
             res.status(200).json(returnlist);
         } catch (error) {
             res.status(400).send(error);

@@ -1,5 +1,5 @@
 import * as postal from "postal";
-import { postalChannels, postalTopics } from "../parameters";
+import { postalChannels, postalTopics, FreightForwaderCategory } from "../parameters";
 import PQueue from "p-queue";
 import fetch from "node-fetch";
 import * as mongoose from "mongoose";
@@ -21,7 +21,8 @@ export const certificateRegisterApprovedEventHandler = () => {
 
 const TreatForwarder = async (eventobj: any) => {
     var returnobj = await getCertificateRegisterByMembershipNumber(eventobj);
-    if (returnobj.category == "Individual") {
+    if (returnobj.category.code == FreightForwaderCategory.Staff
+        || returnobj.category.code == FreightForwaderCategory.Executive) {
         treatIndividualForwarder(eventobj);
     } else {
         treatCorporateForwarder(eventobj);

@@ -62,20 +62,20 @@ export const FreightForwaderCategory = {
 
   // getList: () => {
   //   return Object.keys(FreightForwaderCategory);
-    
+
   // }
 };
 
 export const forwarderRecordStatus = {
-  Pending: 1,
-  Treated: 2,
+  Pending: 0,
+  Treated: 1,
   getDescription: (value: number) => {
     switch (value) {
       case 1:
         return "Pending";
       default:
         return "Treated";
-      
+
     }
   }
 };

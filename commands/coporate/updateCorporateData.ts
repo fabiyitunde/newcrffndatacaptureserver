@@ -2,13 +2,13 @@ import { CoporateDataSchema } from "../../models/coporatedata";
 import { dataCaptureRegistrationStatus } from "../../parameters";
 import * as mongoose from "mongoose";
 
-import { getStateList } from "../../queries/parameterQueries";
+import { getStateList, getCategory } from "../../queries/parameterQueries";
 const CoporateData = mongoose.model("CoporateData", CoporateDataSchema);
 export async function updateCorporateData(
   mongo_id: string,
   membershipnumber: string,
   companyname: string,
-  category: string,
+  category: number,
   address: string,
   association: string,
   email: string,
@@ -36,12 +36,12 @@ export async function updateCorporateData(
   if (existingrecordByMongoId.status != dataCaptureRegistrationStatus.Pending)
     throw "The Record Is No More Pending";
   const statelist: any[] = await getStateList();
-
+  const categoryobj: any = getCategory(category);
   const existingstate: any = statelist.find(a => a.code == statecode);
   var updaterec: any = {
     membershipnumber: membershipnumber,
     companyname: companyname,
-    category: category,
+    category: { code: category, description: categoryobj},
     address: address,
     association: association,
 

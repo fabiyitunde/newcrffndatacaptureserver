@@ -8,20 +8,24 @@ export const individualforwarderSchema = new mongoose.Schema({
   },
   middlename: {
     type: String,
-  } ,
+  },
   surname: {
     type: String,
     required: true
   },
   membershipnumber: {
-    type: String, 
+    type: String,
     unique: true,
     required: true
   },
   status: {
     type: Number,
-    enum:[0,1],
+    enum: [0, 1],
     default: 0
-}  
+  },
+  userid: {
+    type: String,
+    //required: true
+  }
 });
 

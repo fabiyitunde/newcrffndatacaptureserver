@@ -2,7 +2,7 @@ import { IndividualDataSchema } from "../../models/individualdata";
 import { dataCaptureRegistrationStatus } from "../../parameters";
 import * as mongoose from "mongoose";
 
-import { getStateList, getLGAList } from "../../queries/parameterQueries";
+import { getStateList, getLGAList, getCategory } from "../../queries/parameterQueries";
 const IndividualData = mongoose.model("IndividualData", IndividualDataSchema);
 export async function updateIndividualData(
   mongo_id: string,
@@ -10,7 +10,7 @@ export async function updateIndividualData(
   title: string,
   surname: string,
   othernames: string,
-  category: string,
+  category: number,
   address: string,
   email: string,
   phonenumber: string,
@@ -27,13 +27,13 @@ export async function updateIndividualData(
   });
   if (existingrecordByMembershipNumber) {
     if (existingrecordByMembershipNumber._id != existingrecordByMongoId._id)
-      throw "This Memebership Number Already Assigned";
+      throw "This Membership Number Already Assigned";
   }
   if (existingrecordByMongoId.status != dataCaptureRegistrationStatus.Pending)
     throw "The Record Is No More Pending";
   const statelist: any[] = await getStateList();
   const lgalist: any[] = await getLGAList();
-
+  const categoryobj: any = getCategory(category);
   const existingstate: any = statelist.find(a => a.code == statecode);
   const existinglga: any = lgalist.find(a => a.code == lgacode);
   var updaterec: any = {
@@ -41,7 +41,7 @@ export async function updateIndividualData(
     title: title,
     surname: surname,
     othernames:  othernames,
-    category: category,
+    category: { code: category, description: categoryobj},
     address: address,
     email: email,
     phonenumber: phonenumber,

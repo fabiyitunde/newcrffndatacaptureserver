@@ -28,6 +28,6 @@ export const registerIndividualRoutes = app => {
     .route("/api/individual/getUnApprovedIndividualDataList")
     .post([Auth, individualController.getUnApprovedIndividualDataList]);
   app
-    .route("/api/individual/getUnSubmittedIndividualDataList")
+    .route("/api/individual/getUnSubmittedIndividualDataList/:userid")
     .post([Auth, individualController.getUnSubmittedIndividualDataList]);
 };

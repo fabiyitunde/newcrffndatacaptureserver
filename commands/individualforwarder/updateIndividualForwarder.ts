@@ -1,7 +1,7 @@
 import { individualforwarderSchema } from "../../models/individualforwarder";
 import { forwarderRecordStatus } from "../../parameters";
 import * as mongoose from "mongoose";
-import { raiseCorporateForwarderUpdatedEvent } from "../../domainevents/corporateForwarderEvents";
+import { raiseIndividualforwarderForwarderUpdatedEvent } from "../../domainevents/individualForwarderEvents";
 
 
 const individualForwarder = mongoose.model("individualForwarder", individualforwarderSchema);
@@ -30,5 +30,5 @@ export async function updateIndividualForwarder(
     };
     await individualForwarder.findOneAndUpdate({ _id: mongo_id }, updaterec);
 
-    await raiseCorporateForwarderUpdatedEvent(membershipnumber);
+    await raiseIndividualforwarderForwarderUpdatedEvent(membershipnumber);
 }

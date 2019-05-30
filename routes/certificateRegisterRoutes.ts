@@ -29,7 +29,7 @@ export const registerCertificateRegisterRoutes = app => {
     .get([Auth, certificateRegisterController.getCertificateRegisterByMembershipNumber]);
 
     app
-    .route("/api/certificateregister/getUnSubmittedCertificateRegisterList")
+    .route("/api/certificateregister/getUnSubmittedCertificateRegisterList/:userid")
     .get([Auth, certificateRegisterController.getUnSubmittedCertificateRegisterList]);
 
     app

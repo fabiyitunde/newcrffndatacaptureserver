@@ -1,4 +1,5 @@
 import * as mongoose from "mongoose";
+import { string } from "joi";
 
 export const CertificateRegisterSchema = new mongoose.Schema({
   membershipnumber: {
@@ -16,7 +17,11 @@ export const CertificateRegisterSchema = new mongoose.Schema({
   },
   status: {
     type: Number,
-    enum: [0, 1, 2, 3],
-    default: 0
+    enum: [1, 2, 3, 4],
+    default: 1
+  },
+  userid : {
+    type: String,
+    required: true
   }
 });

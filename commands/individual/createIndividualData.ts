@@ -2,21 +2,22 @@ import { IndividualDataSchema } from "../../models/individualdata";
 import { dataCaptureRegistrationStatus } from "../../parameters";
 import * as mongoose from "mongoose";
 
-import { getStateList, getLGAList } from "../../queries/parameterQueries";
+import { getStateList, getLGAList, getCategory } from "../../queries/parameterQueries";
 const IndividualData = mongoose.model("IndividualData", IndividualDataSchema);
 export async function createIndividualData(
   membershipnumber: string,
   title: string,
   surname: string,
   othernames: string,
-  category: string,
+  category: number,
   address: string,
   email: string,
   phonenumber: string,
   statecode: string,
   lgacode: string,
   typeofid: string,
-  idcardnumber: string
+  idcardnumber: string,
+  userid: string
 ) {
   const existingrecordWithEmail: any = await IndividualData.findOne({
     email: email
@@ -29,6 +30,7 @@ export async function createIndividualData(
 
   const statelist: any[] = await getStateList();
   const lgalist: any[] = await getLGAList();
+  const categoryobj: any = getCategory(category);
 
   const existingstate: any = statelist.find(a => a.code == statecode);
   const existinglga: any = lgalist.find(a => a.code == lgacode);
@@ -37,7 +39,7 @@ export async function createIndividualData(
     title: title,
     surname: surname,
     othernames:  othernames,
-    category: category,
+    category: { code: category, description: categoryobj},
     address: address,
     email: email,
     phonenumber: phonenumber,
@@ -46,6 +48,7 @@ export async function createIndividualData(
     typeofid: typeofid,
     idcardnumber: idcardnumber,
     status: dataCaptureRegistrationStatus.Pending,
+    userid: userid
   };
   var individualdata = new IndividualData(newrec);
   await individualdata.save();

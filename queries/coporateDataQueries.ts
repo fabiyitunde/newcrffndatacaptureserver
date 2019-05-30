@@ -13,9 +13,10 @@ export const getCoporateDataByCRFFNNumber = async (
   return existingrec;
 };
 
-export const getUnSubmittedCoporateDataList = async () => {
+export const getUnSubmittedCoporateDataList = async (userid: string) => {
   var existinglist: any = await CoporateData.find({
-    status: dataCaptureRegistrationStatus.Pending
+    status: dataCaptureRegistrationStatus.Pending,
+    userid: userid
   });
   return existinglist;
 };

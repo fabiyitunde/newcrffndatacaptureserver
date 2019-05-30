@@ -19,14 +19,16 @@ export class CertificateRegisterController {
                 mongo_id,
                 membershipnumber,
                 name,
-                category
+                category,
+                userid
             } = req.body;
 
             await updateCertificateRegister(
                 mongo_id,
                 membershipnumber,
                 name,
-                category
+                category,
+                userid
             );
             var returndetail = await getCertificateRegisterByMembershipNumber(membershipnumber);
             res.status(200).json(returndetail);
@@ -105,7 +107,8 @@ export class CertificateRegisterController {
 
     public async getUnSubmittedCertificateRegisterList(req: Request, res: Response) {
         try {
-            var returnlist = await getUnSubmittedCertificateRegisterList();
+            const { userid } = req.params;
+            var returnlist = await getUnSubmittedCertificateRegisterList(userid);
             res.status(200).json(returnlist);
         } catch (error) {
             res.status(400).send(error);

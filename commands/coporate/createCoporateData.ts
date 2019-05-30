@@ -2,12 +2,12 @@ import { CoporateDataSchema } from "../../models/coporatedata";
 import { dataCaptureRegistrationStatus } from "../../parameters";
 import * as mongoose from "mongoose";
 
-import { getStateList } from "../../queries/parameterQueries";
+import { getStateList, getCategory } from "../../queries/parameterQueries";
 const CoporateData = mongoose.model("CoporateData", CoporateDataSchema);
 export async function createCoporateData(
   membershipnumber: string,
   companyname: string,
-  category: string,
+  category: number,
   address: string,
   association: string,
   email: string,
@@ -20,7 +20,8 @@ export async function createCoporateData(
   postalAddress: string,
   rCNos: string,
   statecode: string,
-  website: string
+  website: string,
+  userid: string
 ) {
   const existingrecordWithEmail: any = await CoporateData.findOne({
     email: email
@@ -32,12 +33,12 @@ export async function createCoporateData(
   if (existingrecordWithCRFFNNumber) throw "CRFFN Number Already exist.";
 
   const statelist: any[] = await getStateList();
-
+  const categoryobj: any = getCategory(category);
   const existingstate: any = statelist.find(a => a.code == statecode);
   var newrec: any = {
     membershipnumber: membershipnumber,
     companyname: companyname,
-    category: category,
+    category: { code: category, description: categoryobj},
     address: address,
     association: association,
 
@@ -52,7 +53,8 @@ export async function createCoporateData(
     postalAddress: postalAddress,
     rCNos: rCNos,
     status: dataCaptureRegistrationStatus.Pending,
-    website: website
+    website: website,
+    userid: userid
   };
   var coporatedata = new CoporateData(newrec);
   await coporatedata.save();

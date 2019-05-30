@@ -32,7 +32,8 @@ export class CoporateController {
         postalAddress,
         rCNos,
         statecode,
-        website
+        website,
+        userid
       } = req.body;
 
       await createCoporateData(
@@ -51,7 +52,8 @@ export class CoporateController {
         postalAddress,
         rCNos,
         statecode,
-        website
+        website, 
+        userid
       );
       var returndetail = await getCoporateDataByCRFFNNumber(membershipnumber);
       res.status(200).json(returndetail);
@@ -161,7 +163,8 @@ export class CoporateController {
   }
   public async getUnSubmittedCoporateDataList(req: Request, res: Response) {
     try {
-      var returnlist = await getUnSubmittedCoporateDataList();
+      const { userid } = req.params;
+      var returnlist = await getUnSubmittedCoporateDataList(userid);
       res.status(200).json(returnlist);
     } catch (error) {
       res.status(400).send(error);
