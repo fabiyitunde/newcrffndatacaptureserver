@@ -18,7 +18,7 @@ export const individualForwarderUpdatedEventHandler = () => {
 const CreateCertificateRegister = async (eventobj: any) => {
     const body = {
         membershipnumber: eventobj.membershipnumber,
-        name: eventobj.name,
+        name: eventobj.surname + " " + eventobj.firstname,
         category: eventobj.category,
         userid: eventobj.userid
     }

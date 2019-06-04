@@ -15,13 +15,15 @@ export class CorporateForwarderController {
             const {
                 mongo_id,
                 membershipnumber,
-                companyname
+                companyname,
+                userid
             } = req.body;
 
             await updateCorporateForwarder(
                 mongo_id,
                 membershipnumber,
-                companyname
+                companyname,
+                userid
             );
             var returndetail = await getCorporateForwarderByMembershipNumber(membershipnumber);
             res.status(200).json(returndetail);

@@ -17,7 +17,7 @@ export const getUserByEmail = async (email: string) => {
 export const getUserInfoWithoutPasswordById = async userid => {
   var user: any = await User.findOne({ id: userid });
   return {
-    id: user.id,
+    id: user._id,
     name: user.name,
     email: user.email,
     usertype: user.usertype,

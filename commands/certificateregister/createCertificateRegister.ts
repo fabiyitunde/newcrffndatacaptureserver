@@ -23,6 +23,7 @@ export async function createCertificateRegister(
     status: CertificateRegisterStatus.Pending,
     userid: userid
   };
+  console.log(newrec);
   var certificateregister = new CertificateRegister(newrec);
   await certificateregister.save();
 }

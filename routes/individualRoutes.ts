@@ -23,11 +23,11 @@ export const registerIndividualRoutes = app => {
     .get([Auth, individualController.getIndividualDataByMemebershipId]);
   app
     .route("/api/individual/getIndividualMemeberListIssuedCertificates")
-    .post([Auth, individualController.getIndividualMemeberListIssuedCertificates]);
+    .get([Auth, individualController.getIndividualMemeberListIssuedCertificates]);
   app
     .route("/api/individual/getUnApprovedIndividualDataList")
-    .post([Auth, individualController.getUnApprovedIndividualDataList]);
+    .get([Auth, individualController.getUnApprovedIndividualDataList]);
   app
     .route("/api/individual/getUnSubmittedIndividualDataList/:userid")
-    .post([Auth, individualController.getUnSubmittedIndividualDataList]);
+    .get([Auth, individualController.getUnSubmittedIndividualDataList]);
 };

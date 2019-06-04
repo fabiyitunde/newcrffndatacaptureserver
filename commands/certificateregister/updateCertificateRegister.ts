@@ -21,7 +21,10 @@ export async function updateCertificateRegister(
     //     membershipnumber: membershipnumber
     // });
     // if (existingrecordByMembershipNumber) throw "Membership Number Already exist.";
-    const categoryobj: any = getCategory(category);
+    const categoryobj: any = await getCategory(category);
+    console.log(mongo_id);
+    console.log(category);
+    console.log(categoryobj);
     var updaterec: any = {
         membershipnumber: membershipnumber,
         name: name,
@@ -30,5 +33,8 @@ export async function updateCertificateRegister(
         userid: userid
     };
     //var certificateregister = new CertificateRegister(newrec);
-    await CertificateRegister.findOneAndUpdate({ _id: mongo_id }, updaterec);
+    const ID = mongoose.Types.ObjectId(mongo_id);
+    console.log(updaterec);
+    console.log(ID);
+    await CertificateRegister.findOneAndUpdate( { _id: ID }, updaterec);
 }

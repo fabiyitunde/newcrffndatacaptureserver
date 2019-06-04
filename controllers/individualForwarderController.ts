@@ -14,13 +14,15 @@ export class IndividualForwarderController {
             const {
                 mongo_id,
                 membershipnumber,
-                name
+                name,
+                userid
             } = req.body;
 
             await updateIndividualForwarder(
                 mongo_id,
                 membershipnumber,
-                name
+                name,
+                userid
             );
             var returndetail = await getIndividualForwarderByMembershipNumber(membershipnumber);
             res.status(200).json(returndetail);

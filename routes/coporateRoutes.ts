@@ -23,11 +23,11 @@ export const registerCoporateRoutes = app => {
     .get([Auth, coporateController.getCoporateDataByMemebershipId]);
   app
     .route("/api/coporate/getCoporateMemeberListIssuedCertificates")
-    .post([Auth, coporateController.getCoporateMemeberListIssuedCertificates]);
+    .get([Auth, coporateController.getCoporateMemeberListIssuedCertificates]);
   app
     .route("/api/coporate/getUnApprovedCoporateDataList")
-    .post([Auth, coporateController.getUnApprovedCoporateDataList]);
+    .get([Auth, coporateController.getUnApprovedCoporateDataList]);
   app
     .route("/api/coporate/getUnSubmittedCoporateDataList/:userid")
-    .post([Auth, coporateController.getUnSubmittedCoporateDataList]);
+    .get([Auth, coporateController.getUnSubmittedCoporateDataList]);
 };

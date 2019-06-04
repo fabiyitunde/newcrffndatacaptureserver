@@ -8,25 +8,27 @@ const individualForwarder = mongoose.model("individualForwarder", individualforw
 export async function updateIndividualForwarder(
     mongo_id: string,
     membershipnumber: string,
-    companyname: string
+    name: string,
+    userid: string
 ) {
     const existingrecordByMongoId: any = await individualForwarder.findOne({
         _id: mongo_id
     });
-    const existingrecordByMembershipNumber: any = await individualForwarder.findOne({
-        membershipnumber: membershipnumber
-    });
-    if (existingrecordByMembershipNumber) {
-        if (existingrecordByMembershipNumber._id != existingrecordByMongoId._id)
-            throw "This Membership Number Already Assigned";
-    }
+    // const existingrecordByMembershipNumber: any = await individualForwarder.findOne({
+    //     membershipnumber: membershipnumber
+    // });
+    // if (existingrecordByMembershipNumber) {
+    //     if (existingrecordByMembershipNumber._id != existingrecordByMongoId._id)
+    //         throw "This Membership Number Already Assigned";
+    // }
     if (existingrecordByMongoId.status != forwarderRecordStatus.Pending)
         throw "The Record Is No More Pending";
 
     var updaterec: any = {
         membershipnumber: membershipnumber,
-        companyname: companyname,
-        status: forwarderRecordStatus.Pending
+        name: name,
+        status: forwarderRecordStatus.Pending,
+        userid: userid
     };
     await individualForwarder.findOneAndUpdate({ _id: mongo_id }, updaterec);
 
