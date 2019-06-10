@@ -21,6 +21,11 @@ export const registerIndividualRoutes = app => {
   app
     .route("/api/individual/getIndividualDataByMemebershipId/:membershipnumber")
     .get([Auth, individualController.getIndividualDataByMemebershipId]);
+
+  app
+    .route("/api/individual/getIndividualDataById/:id")
+    .get([Auth, individualController.getIndividualDataById]);
+
   app
     .route("/api/individual/getIndividualMemeberListIssuedCertificates")
     .get([Auth, individualController.getIndividualMemeberListIssuedCertificates]);

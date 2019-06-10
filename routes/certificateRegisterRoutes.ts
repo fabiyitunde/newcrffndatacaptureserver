@@ -17,6 +17,10 @@ export const registerCertificateRegisterRoutes = app => {
     .post([Auth, certificateRegisterController.approveCertificateRegister]);
 
     app
+    .route("/api/certificateregister/returnCertificateRegister")
+    .post([Auth, certificateRegisterController.returnCertificateRegister]);
+
+    app
     .route("/api/certificateregister/issueCertificate")
     .post([Auth, certificateRegisterController.issueCertificate]);
 

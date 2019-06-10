@@ -21,6 +21,11 @@ export const registerCoporateRoutes = app => {
   app
     .route("/api/coporate/getCoporateDataByMemebershipId/:membershipnumber")
     .get([Auth, coporateController.getCoporateDataByMemebershipId]);
+
+  app
+    .route("/api/coporate/getCoporateDataById/:id")
+    .get([Auth, coporateController.getCoporateDataById]);
+
   app
     .route("/api/coporate/getCoporateMemeberListIssuedCertificates")
     .get([Auth, coporateController.getCoporateMemeberListIssuedCertificates]);

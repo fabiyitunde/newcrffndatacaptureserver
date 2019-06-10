@@ -13,6 +13,13 @@ export const getIndividualDataByCRFFNNumber = async (
   return existingrec;
 };
 
+export const getIndividualDataById = async (id: string) => {
+  var existingrec: any = await IndividualData.findOne({
+    _id: id
+  });
+  return existingrec;
+};
+
 export const getUnSubmittedIndividualDataList = async (userid: string) => {
   var existinglist: any = await IndividualData.find({
     status: dataCaptureRegistrationStatus.Pending,

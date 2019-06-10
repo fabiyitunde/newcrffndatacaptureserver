@@ -6,6 +6,7 @@ import { approveCoporateData } from "../commands/coporate/approveCoporateData";
 import { returnCoporateData } from "../commands/coporate/returnCoporateData";
 import {
   getCoporateDataByCRFFNNumber,
+  getCoporateDataById,
   getUnSubmittedCoporateDataList,
   getUnApprovedCoporateDataList
 } from "../queries/coporateDataQueries";
@@ -150,6 +151,17 @@ export class CoporateController {
       res.status(400).send(error);
     }
   }
+
+  public async getCoporateDataById(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      var returnobj = await getCoporateDataById(id);
+      res.status(200).json(returnobj);
+    } catch (error) {
+      res.status(400).send(error);
+    }
+  }
+
   public async getCoporateMemeberListIssuedCertificates(
     req: Request,
     res: Response

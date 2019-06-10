@@ -4,11 +4,16 @@ import * as mongoose from "mongoose";
 
 const CoporateData = mongoose.model("CoporateData", CoporateDataSchema);
 
-export const getCoporateDataByCRFFNNumber = async (
-  membershipnumber: string
-) => {
+export const getCoporateDataByCRFFNNumber = async (membershipnumber: string) => {
   var existingrec: any = await CoporateData.findOne({
     membershipnumber: membershipnumber
+  });
+  return existingrec;
+};
+
+export const getCoporateDataById = async (id: string) => {
+  var existingrec: any = await CoporateData.findOne({
+    _id: id
   });
   return existingrec;
 };
