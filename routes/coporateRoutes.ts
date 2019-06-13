@@ -35,4 +35,8 @@ export const registerCoporateRoutes = app => {
   app
     .route("/api/coporate/getUnSubmittedCoporateDataList/:userid")
     .get([Auth, coporateController.getUnSubmittedCoporateDataList]);
+
+  app
+    .route("/api/coporate/getStatesList")
+    .get([Auth, coporateController.getStatesList]);
 };

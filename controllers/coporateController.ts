@@ -10,6 +10,7 @@ import {
   getUnSubmittedCoporateDataList,
   getUnApprovedCoporateDataList
 } from "../queries/coporateDataQueries";
+import { getStateList } from "../queries/ParameterQueries";
 import { getCoporateMemeberListIssuedCertificates } from "../queries/certificateRegisterQueries";
 import * as fs from "fs";
 import * as multiparty from "multiparty";
@@ -185,6 +186,15 @@ export class CoporateController {
   public async getUnApprovedCoporateDataList(req: Request, res: Response) {
     try {
       var returnlist = await getUnApprovedCoporateDataList();
+      res.status(200).json(returnlist);
+    } catch (error) {
+      res.status(400).send(error);
+    }
+  }
+
+  public async getStatesList(req: Request, res: Response) {
+    try {
+      var returnlist = await getStateList();
       res.status(200).json(returnlist);
     } catch (error) {
       res.status(400).send(error);

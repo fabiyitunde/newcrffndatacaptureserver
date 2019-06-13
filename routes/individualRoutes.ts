@@ -35,4 +35,12 @@ export const registerIndividualRoutes = app => {
   app
     .route("/api/individual/getUnSubmittedIndividualDataList/:userid")
     .get([Auth, individualController.getUnSubmittedIndividualDataList]);
+
+  app
+    .route("/api/individual/getStatesList")
+    .get([Auth, individualController.getStatesList]);
+
+  app
+    .route("/api/individual/getLGAList")
+    .get([Auth, individualController.getLGAList]);
 };

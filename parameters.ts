@@ -55,8 +55,10 @@ export const FreightForwaderCategory = {
         return "Executive";
       case 3:
         return "Company";
-      default:
+      case 4:
         return "ServiceProvider";
+      default:
+        return "";
     }
   },
 

@@ -7,7 +7,7 @@ const CoporateData = mongoose.model("CoporateData", CoporateDataSchema);
 export async function createCoporateData(
   membershipnumber: string,
   companyname: string,
-  category: number,
+  category: any,
   address: string,
   association: string,
   email: string,
@@ -33,12 +33,12 @@ export async function createCoporateData(
   if (existingrecordWithCRFFNNumber) throw "CRFFN Number Already exist.";
 
   const statelist: any[] = await getStateList();
-  const categoryobj: any = getCategory(category);
+  //const categoryobj: any = getCategory(category);
   const existingstate: any = statelist.find(a => a.code == statecode);
   var newrec: any = {
     membershipnumber: membershipnumber,
     companyname: companyname,
-    category: { code: category, description: categoryobj},
+    category: { code: category.code, description: category.description},
     address: address,
     association: association,
 

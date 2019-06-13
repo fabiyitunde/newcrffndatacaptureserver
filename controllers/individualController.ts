@@ -10,6 +10,7 @@ import {
     getUnSubmittedIndividualDataList,
     getUnApprovedIndividualDataList
 } from "../queries/individualDataQueries";
+import { getStateList, getLGAList } from "../queries/ParameterQueries";
 import { getIndividualMemeberListIssuedCertificates } from "../queries/certificateRegisterQueries";
 
 
@@ -164,6 +165,24 @@ export class IndividualController {
     public async getUnApprovedIndividualDataList(req: Request, res: Response) {
         try {
             var returnlist = await getUnApprovedIndividualDataList();
+            res.status(200).json(returnlist);
+        } catch (error) {
+            res.status(400).send(error);
+        }
+    }
+
+    public async getStatesList(req: Request, res: Response) {
+        try {
+            var returnlist = await getStateList();
+            res.status(200).json(returnlist);
+        } catch (error) {
+            res.status(400).send(error);
+        }
+    }
+
+    public async getLGAList(req: Request, res: Response) {
+        try {
+            var returnlist = await getLGAList();
             res.status(200).json(returnlist);
         } catch (error) {
             res.status(400).send(error);

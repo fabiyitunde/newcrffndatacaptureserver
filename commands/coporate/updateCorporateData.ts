@@ -8,7 +8,7 @@ export async function updateCorporateData(
   mongo_id: string,
   membershipnumber: string,
   companyname: string,
-  category: number,
+  category: any,
   address: string,
   association: string,
   email: string,
@@ -41,7 +41,7 @@ export async function updateCorporateData(
   var updaterec: any = {
     membershipnumber: membershipnumber,
     companyname: companyname,
-    category: { code: category, description: categoryobj},
+    category: { code: category.code, description: category.description},
     address: address,
     association: association,
 

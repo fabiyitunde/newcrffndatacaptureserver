@@ -15,8 +15,8 @@ export const getCoporateMemeberListIssuedCertificates = async () => {
   var existinlist: any[] = await CertificateRegister.find({
     status: CertificateRegisterStatus.Issued,
     $or: [
-      { "category.code": FreightForwaderCategory.Company },
-      { "category.code": FreightForwaderCategory.ServiceProvider }
+      { "category.code": "3" },
+      { "category.code": "4" }
     ]
   });
   return existinlist;
@@ -26,8 +26,8 @@ export const getIndividualMemeberListIssuedCertificates = async () => {
   var existinlist: any[] = await CertificateRegister.find({
     status: CertificateRegisterStatus.Issued,
     $or: [
-      { "category.code": FreightForwaderCategory.Staff },
-      { "category.code": FreightForwaderCategory.Executive }
+      { "category.code": "1" },
+      { "category.code": "2" }
     ]
   });
   return existinlist;

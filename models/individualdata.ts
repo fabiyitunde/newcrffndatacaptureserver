@@ -20,7 +20,7 @@ export const IndividualDataSchema = new mongoose.Schema({
     required: true
   },
   category: {
-    type: String,
+    type: { code: String, description: String },
     required: true
   },
   address: {
@@ -59,7 +59,7 @@ export const IndividualDataSchema = new mongoose.Schema({
     enum: [0, 1, 2],
     default: 0
   },
-  userid : {
+  userid: {
     type: String,
     required: true
   }

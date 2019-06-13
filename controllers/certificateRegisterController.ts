@@ -19,7 +19,8 @@ export class CertificateRegisterController {
                 mongo_id,
                 membershipnumber,
                 name,
-                category,
+                categorycode,
+                categorydescription,
                 userid
             } = req.body;
 
@@ -27,7 +28,8 @@ export class CertificateRegisterController {
                 mongo_id,
                 membershipnumber,
                 name,
-                category,
+                categorycode,
+                categorydescription,
                 userid
             );
             var returndetail = await getCertificateRegisterByMembershipNumber(membershipnumber);

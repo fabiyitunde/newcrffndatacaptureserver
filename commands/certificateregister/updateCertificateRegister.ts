@@ -8,7 +8,8 @@ export async function updateCertificateRegister(
     mongo_id: string,
     membershipnumber: string,
     name: string,
-    category: number,
+    categorycode: number,
+    categorydescription: string,
     userid: string
 ) {
     const existingrecordByMongoId: any = await CertificateRegister.findOne({
@@ -21,7 +22,7 @@ export async function updateCertificateRegister(
     //     membershipnumber: membershipnumber
     // });
     // if (existingrecordByMembershipNumber) throw "Membership Number Already exist.";
-    const categoryobj: any = FreightForwaderCategory.getDescription(category);
+    ////const categoryobj: string = FreightForwaderCategory.getDescription(category);
     //console.log(existingrecordByMongoId);
     //console.log(category);
     //console.log(categoryobj);
@@ -29,7 +30,7 @@ export async function updateCertificateRegister(
         //_id : mongo_id,
         membershipnumber: membershipnumber,
         name: name,
-        category: { code: category, description: categoryobj },
+        category: { code: categorycode, description: categorydescription },
         status: CertificateRegisterStatus.Pending,
         userid: userid
     };
