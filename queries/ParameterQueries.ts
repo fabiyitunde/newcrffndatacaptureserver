@@ -10,8 +10,8 @@ export const getStateList = async () => {
   return await StateTable.find().sort("description");
 };
 
-export const getLGAList = async () => {
-  return await LGATable.find().sort("description");
+export const getLGAList = async (statecode: string) => {
+  return await LGATable.find({ statecode: statecode }).sort("code");
 };
 
 export const getCategory = async (catid: number) => {

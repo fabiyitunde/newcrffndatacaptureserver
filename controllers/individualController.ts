@@ -182,7 +182,8 @@ export class IndividualController {
 
     public async getLGAList(req: Request, res: Response) {
         try {
-            var returnlist = await getLGAList();
+            const { statecode } = req.params;
+            var returnlist = await getLGAList(statecode);
             res.status(200).json(returnlist);
         } catch (error) {
             res.status(400).send(error);

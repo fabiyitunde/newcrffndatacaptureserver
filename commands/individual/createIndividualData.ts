@@ -29,7 +29,7 @@ export async function createIndividualData(
   if (existingrecordWithCRFFNNumber) throw "CRFFN Number Already exist.";
 
   const statelist: any[] = await getStateList();
-  const lgalist: any[] = await getLGAList();
+  const lgalist: any[] = await getLGAList(statecode);
   const categoryobj: any = getCategory(category);
 
   const existingstate: any = statelist.find(a => a.code == statecode);

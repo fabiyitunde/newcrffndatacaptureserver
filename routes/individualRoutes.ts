@@ -41,6 +41,6 @@ export const registerIndividualRoutes = app => {
     .get([Auth, individualController.getStatesList]);
 
   app
-    .route("/api/individual/getLGAList")
+    .route("/api/individual/getLGAList/:statecode")
     .get([Auth, individualController.getLGAList]);
 };
