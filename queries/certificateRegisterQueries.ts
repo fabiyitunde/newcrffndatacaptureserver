@@ -5,6 +5,7 @@ import {
 } from "../parameters";
 
 import * as mongoose from "mongoose";
+import { exec } from "child_process";
 
 const CertificateRegister = mongoose.model(
   "CertificateRegister",
@@ -12,22 +13,26 @@ const CertificateRegister = mongoose.model(
 );
 
 export const getCoporateMemeberListIssuedCertificates = async () => {
+  const company = FreightForwaderCategory.Company;
+  const serviceprovider = FreightForwaderCategory.ServiceProvider;
   var existinlist: any[] = await CertificateRegister.find({
     status: CertificateRegisterStatus.Issued,
     $or: [
-      { "category.code": "3" },
-      { "category.code": "4" }
+      { "category.code": company },
+      { "category.code": serviceprovider }
     ]
   });
   return existinlist;
 };
 
 export const getIndividualMemeberListIssuedCertificates = async () => {
+  const staff = FreightForwaderCategory.Staff;
+  const executive = FreightForwaderCategory.Executive;
   var existinlist: any[] = await CertificateRegister.find({
     status: CertificateRegisterStatus.Issued,
     $or: [
-      { "category.code": "1" },
-      { "category.code": "2" }
+      { "category.code": staff },
+      { "category.code": executive }
     ]
   });
   return existinlist;

@@ -22,13 +22,13 @@ export async function updateIndividualData(
   const existingrecordByMongoId: any = await IndividualData.findOne({
     _id: mongo_id
   });
-  const existingrecordByMembershipNumber: any = await IndividualData.findOne({
-    membershipnumber: membershipnumber
-  });
-  if (existingrecordByMembershipNumber) {
-    if (existingrecordByMembershipNumber._id != existingrecordByMongoId._id)
-      throw "This Membership Number Already Assigned";
-  }
+  // const existingrecordByMembershipNumber: any = await IndividualData.findOne({
+  //   membershipnumber: membershipnumber
+  // });
+  // if (existingrecordByMembershipNumber) {
+  //   if (existingrecordByMembershipNumber._id != existingrecordByMongoId._id)
+  //     throw "This Membership Number Already Assigned";
+  // }
   if (existingrecordByMongoId.status != dataCaptureRegistrationStatus.Pending)
     throw "The Record Is No More Pending";
   const statelist: any[] = await getStateList();

@@ -136,6 +136,16 @@ export class IndividualController {
         }
     }
 
+    public async getIndividualDataByMembershipNumber(req: Request, res: Response) {
+        try {
+            const { membershipnumber } = req.params;
+            var returnobj = await getIndividualDataByCRFFNNumber(membershipnumber);
+            res.status(200).json(returnobj);
+        } catch (error) {
+            res.status(400).send(error);
+        }
+    }
+
     public async getIndividualDataById(req: Request, res: Response) {
         try {
             const { id } = req.params;
