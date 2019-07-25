@@ -8,7 +8,9 @@ const individualForwarder = mongoose.model("individualForwarder", individualforw
 export async function updateIndividualForwarder(
     mongo_id: string,
     membershipnumber: string,
-    name: string,
+    surname: string,
+    firstname: string,
+    middlename: string,
     userid: string
 ) {
     const existingrecordByMongoId: any = await individualForwarder.findOne({
@@ -26,7 +28,9 @@ export async function updateIndividualForwarder(
 
     var updaterec: any = {
         membershipnumber: membershipnumber,
-        name: name,
+        surname: surname,
+        firstname: firstname,
+        middlename: middlename,
         status: forwarderRecordStatus.Pending,
         userid: userid
     };

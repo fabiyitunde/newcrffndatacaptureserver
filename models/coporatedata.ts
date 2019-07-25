@@ -11,7 +11,7 @@ export const CoporateDataSchema = new mongoose.Schema({
     required: true
   },
   category: {
-    type: { code: String, description: String },
+    type: { code: Number, description: String },
     required: true
   },
   address: {
