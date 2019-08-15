@@ -13,28 +13,33 @@ const parameters_1 = require("../parameters");
 const mongoose = require("mongoose");
 const CertificateRegister = mongoose.model("CertificateRegister", certificateregister_1.CertificateRegisterSchema);
 exports.getCoporateMemeberListIssuedCertificates = () => __awaiter(this, void 0, void 0, function* () {
+    const company = parameters_1.FreightForwaderCategory.Company;
+    const serviceprovider = parameters_1.FreightForwaderCategory.ServiceProvider;
     var existinlist = yield CertificateRegister.find({
         status: parameters_1.CertificateRegisterStatus.Issued,
         $or: [
-            { category: parameters_1.FreightForwaderCategory.Company },
-            { category: parameters_1.FreightForwaderCategory.ServiceProvider }
+            { "category.code": company },
+            { "category.code": serviceprovider }
         ]
     });
     return existinlist;
 });
 exports.getIndividualMemeberListIssuedCertificates = () => __awaiter(this, void 0, void 0, function* () {
+    const staff = parameters_1.FreightForwaderCategory.Staff;
+    const executive = parameters_1.FreightForwaderCategory.Executive;
     var existinlist = yield CertificateRegister.find({
         status: parameters_1.CertificateRegisterStatus.Issued,
         $or: [
-            { category: parameters_1.FreightForwaderCategory.Staff },
-            { category: parameters_1.FreightForwaderCategory.Executive }
+            { "category.code": staff },
+            { "category.code": executive }
         ]
     });
     return existinlist;
 });
-exports.getUnSubmittedCertificateRegisterList = () => __awaiter(this, void 0, void 0, function* () {
+exports.getUnSubmittedCertificateRegisterList = (userid) => __awaiter(this, void 0, void 0, function* () {
     var existinglist = yield CertificateRegister.find({
-        status: parameters_1.CertificateRegisterStatus.Pending
+        status: parameters_1.CertificateRegisterStatus.Pending,
+        userid: userid
     });
     return existinglist;
 });
@@ -46,7 +51,7 @@ exports.getCertificateRegisterById = (id) => __awaiter(this, void 0, void 0, fun
 });
 exports.getCertificateRegisterByMembershipNumber = (membershipnumber) => __awaiter(this, void 0, void 0, function* () {
     var existingrec = yield CertificateRegister.findOne({
-        _id: membershipnumber
+        membershipnumber: membershipnumber
     });
     return existingrec;
 });

@@ -26,7 +26,7 @@ exports.getUserByEmail = (email) => __awaiter(this, void 0, void 0, function* ()
 exports.getUserInfoWithoutPasswordById = (userid) => __awaiter(this, void 0, void 0, function* () {
     var user = yield User.findOne({ id: userid });
     return {
-        id: user.id,
+        id: user._id,
         name: user.name,
         email: user.email,
         usertype: user.usertype,

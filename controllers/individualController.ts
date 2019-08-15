@@ -4,6 +4,7 @@ import { updateIndividualData } from "../commands/individual/updateIndividualDat
 import { submitIndividualData } from "../commands/individual/submitIndividualData";
 import { approveIndividualData } from "../commands/individual/approveIndividualData";
 import { returnIndividualData } from "../commands/individual/returnIndividualData";
+import { uploadIndividualPhoto } from "../commands/individual/uploadIndividualPhoto";
 import {
     getIndividualDataByCRFFNNumber,
     getIndividualDataById,
@@ -195,6 +196,22 @@ export class IndividualController {
             const { statecode } = req.params;
             var returnlist = await getLGAList(statecode);
             res.status(200).json(returnlist);
+        } catch (error) {
+            res.status(400).send(error);
+        }
+    }
+
+    public async uploadIndividualPassportPhoto(req: Request, res: Response) {
+        try {
+            //const { membershipnumber } = req.body;
+            const {
+                mongo_id,
+                membershipnumber,
+                passportphotograph,
+            } = req.body;
+            await uploadIndividualPhoto(mongo_id, membershipnumber, passportphotograph);
+            var returndetail = await getIndividualDataByCRFFNNumber(membershipnumber);
+            res.status(200).json(returndetail);
         } catch (error) {
             res.status(400).send(error);
         }

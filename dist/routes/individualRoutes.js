@@ -23,13 +23,25 @@ exports.registerIndividualRoutes = app => {
         .route("/api/individual/getIndividualDataByMemebershipId/:membershipnumber")
         .get([auth_1.default, individualController.getIndividualDataByMemebershipId]);
     app
+        .route("/api/individual/getIndividualDataById/:id")
+        .get([auth_1.default, individualController.getIndividualDataById]);
+    app
         .route("/api/individual/getIndividualMemeberListIssuedCertificates")
-        .post([auth_1.default, individualController.getIndividualMemeberListIssuedCertificates]);
+        .get([auth_1.default, individualController.getIndividualMemeberListIssuedCertificates]);
     app
         .route("/api/individual/getUnApprovedIndividualDataList")
-        .post([auth_1.default, individualController.getUnApprovedIndividualDataList]);
+        .get([auth_1.default, individualController.getUnApprovedIndividualDataList]);
     app
-        .route("/api/individual/getUnSubmittedIndividualDataList")
-        .post([auth_1.default, individualController.getUnSubmittedIndividualDataList]);
+        .route("/api/individual/getUnSubmittedIndividualDataList/:userid")
+        .get([auth_1.default, individualController.getUnSubmittedIndividualDataList]);
+    app
+        .route("/api/individual/getStatesList")
+        .get([auth_1.default, individualController.getStatesList]);
+    app
+        .route("/api/individual/getLGAList/:statecode")
+        .get([auth_1.default, individualController.getLGAList]);
+    app
+        .route("/api/individual/getIndividualDataByMembershipNumber/:membershipnumber")
+        .get([individualController.getIndividualDataByMembershipNumber]);
 };
 //# sourceMappingURL=individualRoutes.js.map

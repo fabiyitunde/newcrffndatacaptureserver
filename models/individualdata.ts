@@ -62,5 +62,8 @@ export const IndividualDataSchema = new mongoose.Schema({
   userid: {
     type: String,
     required: true
+  },
+  passportphotograph:{
+    type: String,
   }
 });

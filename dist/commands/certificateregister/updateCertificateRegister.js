@@ -12,25 +12,33 @@ const certificateregister_1 = require("../../models/certificateregister");
 const parameters_1 = require("../../parameters");
 const mongoose = require("mongoose");
 const CertificateRegister = mongoose.model("CertificateRegister", certificateregister_1.CertificateRegisterSchema);
-function updateCertificateRegister(mongo_id, membershipnumber, companyname, category) {
+function updateCertificateRegister(mongo_id, membershipnumber, name, categorycode, categorydescription, userid) {
     return __awaiter(this, void 0, void 0, function* () {
         const existingrecordByMongoId = yield CertificateRegister.findOne({
             _id: mongo_id
         });
         if (existingrecordByMongoId.status != parameters_1.CertificateRegisterStatus.Pending)
             throw "The Record Is No More Pending";
-        const existingrecordByMembershipNumber = yield CertificateRegister.findOne({
-            membershipnumber: membershipnumber
-        });
-        if (existingrecordByMembershipNumber)
-            throw "Membership Number Already exist.";
+        // const existingrecordByMembershipNumber: any = await CertificateRegister.findOne({
+        //     membershipnumber: membershipnumber
+        // });
+        // if (existingrecordByMembershipNumber) throw "Membership Number Already exist.";
+        ////const categoryobj: string = FreightForwaderCategory.getDescription(category);
+        //console.log(existingrecordByMongoId);
+        //console.log(category);
+        //console.log(categoryobj);
         var updaterec = {
+            //_id : mongo_id,
             membershipnumber: membershipnumber,
-            name: companyname,
-            category: category,
-            status: parameters_1.CertificateRegisterStatus.Pending
+            name: name,
+            category: { code: categorycode, description: categorydescription },
+            status: parameters_1.CertificateRegisterStatus.Pending,
+            userid: userid
         };
         //var certificateregister = new CertificateRegister(newrec);
+        //const ID = mongoose.Types.ObjectId(mongo_id);
+        //console.log(updaterec);
+        //console.log(ID);
         yield CertificateRegister.findOneAndUpdate({ _id: mongo_id }, updaterec);
     });
 }

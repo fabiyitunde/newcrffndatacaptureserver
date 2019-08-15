@@ -20,7 +20,7 @@ exports.IndividualDataSchema = new mongoose.Schema({
         required: true
     },
     category: {
-        type: String,
+        type: { code: Number, description: String },
         required: true
     },
     address: {
@@ -58,6 +58,13 @@ exports.IndividualDataSchema = new mongoose.Schema({
         type: Number,
         enum: [0, 1, 2],
         default: 0
+    },
+    userid: {
+        type: String,
+        required: true
+    },
+    passportphotograph: {
+        type: String,
     }
 });
 //# sourceMappingURL=individualdata.js.map

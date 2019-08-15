@@ -14,6 +14,9 @@ exports.registerCertificateRegisterRoutes = app => {
         .route("/api/certificateregister/approveCertificateRegister")
         .post([auth_1.default, certificateRegisterController.approveCertificateRegister]);
     app
+        .route("/api/certificateregister/returnCertificateRegister")
+        .post([auth_1.default, certificateRegisterController.returnCertificateRegister]);
+    app
         .route("/api/certificateregister/issueCertificate")
         .post([auth_1.default, certificateRegisterController.issueCertificate]);
     app
@@ -23,7 +26,7 @@ exports.registerCertificateRegisterRoutes = app => {
         .route("/api/certificateregister/getCertificateRegisterByMembershipNumber/:membershipnumber")
         .get([auth_1.default, certificateRegisterController.getCertificateRegisterByMembershipNumber]);
     app
-        .route("/api/certificateregister/getUnSubmittedCertificateRegisterList")
+        .route("/api/certificateregister/getUnSubmittedCertificateRegisterList/:userid")
         .get([auth_1.default, certificateRegisterController.getUnSubmittedCertificateRegisterList]);
     app
         .route("/api/certificateregister/getUnApprovedCertificateRegisterList")

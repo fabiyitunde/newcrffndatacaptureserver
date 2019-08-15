@@ -14,8 +14,8 @@ class IndividualForwarderController {
     updateIndividualForwarder(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const { mongo_id, membershipnumber, name } = req.body;
-                yield updateIndividualForwarder_1.updateIndividualForwarder(mongo_id, membershipnumber, name);
+                const { mongo_id, membershipnumber, surname, firstname, middlename, userid } = req.body;
+                yield updateIndividualForwarder_1.updateIndividualForwarder(mongo_id, membershipnumber, surname, firstname, middlename, userid);
                 var returndetail = yield individualForwarderQueries_1.getIndividualForwarderByMembershipNumber(membershipnumber);
                 res.status(200).json(returndetail);
             }

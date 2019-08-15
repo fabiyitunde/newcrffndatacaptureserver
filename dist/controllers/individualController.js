@@ -13,14 +13,16 @@ const updateIndividualData_1 = require("../commands/individual/updateIndividualD
 const submitIndividualData_1 = require("../commands/individual/submitIndividualData");
 const approveIndividualData_1 = require("../commands/individual/approveIndividualData");
 const returnIndividualData_1 = require("../commands/individual/returnIndividualData");
+const uploadIndividualPhoto_1 = require("../commands/individual/uploadIndividualPhoto");
 const individualDataQueries_1 = require("../queries/individualDataQueries");
+const ParameterQueries_1 = require("../queries/ParameterQueries");
 const certificateRegisterQueries_1 = require("../queries/certificateRegisterQueries");
 class IndividualController {
     createIndividualData(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const { membershipnumber, title, surname, othernames, category, address, email, phonenumber, statecode, lgacode, typeofid, idcardnumber } = req.body;
-                yield createIndividualData_1.createIndividualData(membershipnumber, title, surname, othernames, category, address, email, phonenumber, statecode, lgacode, typeofid, idcardnumber);
+                const { membershipnumber, title, surname, othernames, category, address, email, phonenumber, statecode, lgacode, typeofid, idcardnumber, userid } = req.body;
+                yield createIndividualData_1.createIndividualData(membershipnumber, title, surname, othernames, category, address, email, phonenumber, statecode, lgacode, typeofid, idcardnumber, userid);
                 var returndetail = yield individualDataQueries_1.getIndividualDataByCRFFNNumber(membershipnumber);
                 res.status(200).json(returndetail);
             }
@@ -93,6 +95,30 @@ class IndividualController {
             }
         });
     }
+    getIndividualDataByMembershipNumber(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { membershipnumber } = req.params;
+                var returnobj = yield individualDataQueries_1.getIndividualDataByCRFFNNumber(membershipnumber);
+                res.status(200).json(returnobj);
+            }
+            catch (error) {
+                res.status(400).send(error);
+            }
+        });
+    }
+    getIndividualDataById(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { id } = req.params;
+                var returnobj = yield individualDataQueries_1.getIndividualDataById(id);
+                res.status(200).json(returnobj);
+            }
+            catch (error) {
+                res.status(400).send(error);
+            }
+        });
+    }
     getIndividualMemeberListIssuedCertificates(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -107,7 +133,8 @@ class IndividualController {
     getUnSubmittedIndividualDataList(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                var returnlist = yield individualDataQueries_1.getUnSubmittedIndividualDataList();
+                const { userid } = req.params;
+                var returnlist = yield individualDataQueries_1.getUnSubmittedIndividualDataList(userid);
                 res.status(200).json(returnlist);
             }
             catch (error) {
@@ -120,6 +147,43 @@ class IndividualController {
             try {
                 var returnlist = yield individualDataQueries_1.getUnApprovedIndividualDataList();
                 res.status(200).json(returnlist);
+            }
+            catch (error) {
+                res.status(400).send(error);
+            }
+        });
+    }
+    getStatesList(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                var returnlist = yield ParameterQueries_1.getStateList();
+                res.status(200).json(returnlist);
+            }
+            catch (error) {
+                res.status(400).send(error);
+            }
+        });
+    }
+    getLGAList(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { statecode } = req.params;
+                var returnlist = yield ParameterQueries_1.getLGAList(statecode);
+                res.status(200).json(returnlist);
+            }
+            catch (error) {
+                res.status(400).send(error);
+            }
+        });
+    }
+    uploadIndividualPassportPhoto(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                //const { membershipnumber } = req.body;
+                const { mongo_id, membershipnumber, passportphotograph, } = req.body;
+                yield uploadIndividualPhoto_1.uploadIndividualPhoto(mongo_id, membershipnumber, passportphotograph);
+                var returndetail = yield individualDataQueries_1.getIndividualDataByCRFFNNumber(membershipnumber);
+                res.status(200).json(returndetail);
             }
             catch (error) {
                 res.status(400).send(error);

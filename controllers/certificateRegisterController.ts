@@ -9,7 +9,8 @@ import {
     getCertificateRegisterById,
     getCertificateRegisterByMembershipNumber,
     getUnApprovedCertificateRegisterList,
-    getUnIssuedCertificateRegisterList
+    getUnIssuedCertificateRegisterList,
+    getCertificateRegisterList
 } from "../queries/certificateRegisterQueries";
 export class CertificateRegisterController {
     
@@ -129,6 +130,15 @@ export class CertificateRegisterController {
     public async getUnIssuedCertificateRegisterList(req: Request, res: Response) {
         try {
             var returnlist = await getUnIssuedCertificateRegisterList();
+            res.status(200).json(returnlist);
+        } catch (error) {
+            res.status(400).send(error);
+        }
+    }
+
+    public async getCertificateRegisterList(req: Request, res: Response) {
+        try {
+            var returnlist = await getCertificateRegisterList();
             res.status(200).json(returnlist);
         } catch (error) {
             res.status(400).send(error);

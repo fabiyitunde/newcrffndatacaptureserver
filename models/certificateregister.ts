@@ -1,5 +1,6 @@
 import * as mongoose from "mongoose";
 import { string } from "joi";
+import { DateTime } from "mssql";
 
 export const CertificateRegisterSchema = new mongoose.Schema({
   
@@ -24,5 +25,13 @@ export const CertificateRegisterSchema = new mongoose.Schema({
   userid : {
     type: String,
     required: true
+  },
+  extracted:{
+    type:Boolean,
+    default: false
+  },
+  date: {
+    type:Date,
+    default: Date.now
   }
 });

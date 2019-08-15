@@ -18,21 +18,22 @@ function updateCorporateData(mongo_id, membershipnumber, companyname, category, 
         const existingrecordByMongoId = yield CoporateData.findOne({
             _id: mongo_id
         });
-        const existingrecordByMembershipNumber = yield CoporateData.findOne({
-            membershipnumber: membershipnumber
-        });
-        if (existingrecordByMembershipNumber) {
-            if (existingrecordByMembershipNumber._id != existingrecordByMongoId._id)
-                throw "This Memebership Number Already Assigned";
-        }
+        // const existingrecordByMembershipNumber: any = await CoporateData.findOne({
+        //   membershipnumber: membershipnumber
+        // });
+        // if (existingrecordByMembershipNumber) {
+        //   if (existingrecordByMembershipNumber._id != existingrecordByMongoId._id)
+        //     throw "This Memebership Number Already Assigned";
+        // }
         if (existingrecordByMongoId.status != parameters_1.dataCaptureRegistrationStatus.Pending)
             throw "The Record Is No More Pending";
         const statelist = yield parameterQueries_1.getStateList();
+        const categoryobj = parameterQueries_1.getCategory(category);
         const existingstate = statelist.find(a => a.code == statecode);
         var updaterec = {
             membershipnumber: membershipnumber,
             companyname: companyname,
-            category: category,
+            category: { code: category.code, description: category.description },
             address: address,
             association: association,
             state: { code: existingstate.code, description: existingstate.description },

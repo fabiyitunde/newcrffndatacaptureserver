@@ -11,9 +11,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const individualdata_1 = require("../../models/individualdata");
 const parameters_1 = require("../../parameters");
 const mongoose = require("mongoose");
-const parameterQueries_1 = require("../../queries/parameterQueries");
 const IndividualData = mongoose.model("IndividualData", individualdata_1.IndividualDataSchema);
-function updateIndividualData(mongo_id, membershipnumber, title, surname, othernames, category, address, email, phonenumber, statecode, lgacode, typeofid, idcardnumber) {
+function uploadIndividualPhoto(mongo_id, membershipnumber, passportphotograph) {
     return __awaiter(this, void 0, void 0, function* () {
         const existingrecordByMongoId = yield IndividualData.findOne({
             _id: mongo_id
@@ -27,28 +26,12 @@ function updateIndividualData(mongo_id, membershipnumber, title, surname, othern
         // }
         if (existingrecordByMongoId.status != parameters_1.dataCaptureRegistrationStatus.Pending)
             throw "The Record Is No More Pending";
-        const statelist = yield parameterQueries_1.getStateList();
-        const lgalist = yield parameterQueries_1.getLGAList(statecode);
-        const categoryobj = parameterQueries_1.getCategory(category);
-        const existingstate = statelist.find(a => a.code == statecode);
-        const existinglga = lgalist.find(a => a.code == lgacode);
         var updaterec = {
-            membershipnumber: membershipnumber,
-            title: title,
-            surname: surname,
-            othernames: othernames,
-            category: { code: category.code, description: category.description },
-            address: address,
-            email: email,
-            phonenumber: phonenumber,
-            state: { code: existingstate.code, description: existingstate.description },
-            lga: { code: existinglga.code, description: existinglga.description },
-            typeofid: typeofid,
-            idcardnumber: idcardnumber,
-            status: parameters_1.dataCaptureRegistrationStatus.Pending,
+            //membershipnumber: membershipnumber,
+            passportphotograph: passportphotograph
         };
         yield IndividualData.findOneAndUpdate({ _id: mongo_id }, updaterec);
     });
 }
-exports.updateIndividualData = updateIndividualData;
-//# sourceMappingURL=updateIndividualData.js.map
+exports.uploadIndividualPhoto = uploadIndividualPhoto;
+//# sourceMappingURL=uploadIndividualPhoto.js.map

@@ -18,9 +18,16 @@ exports.getCoporateDataByCRFFNNumber = (membershipnumber) => __awaiter(this, voi
     });
     return existingrec;
 });
-exports.getUnSubmittedCoporateDataList = () => __awaiter(this, void 0, void 0, function* () {
+exports.getCoporateDataById = (id) => __awaiter(this, void 0, void 0, function* () {
+    var existingrec = yield CoporateData.findOne({
+        _id: id
+    });
+    return existingrec;
+});
+exports.getUnSubmittedCoporateDataList = (userid) => __awaiter(this, void 0, void 0, function* () {
     var existinglist = yield CoporateData.find({
-        status: parameters_1.dataCaptureRegistrationStatus.Pending
+        status: parameters_1.dataCaptureRegistrationStatus.Pending,
+        userid: userid
     });
     return existinglist;
 });

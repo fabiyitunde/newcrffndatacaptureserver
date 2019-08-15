@@ -7,7 +7,7 @@ import { initRoutes } from "./routes/index";
 
 import { initHandlers } from "./eventhandlers/index";
 
-const PORT = process.env.PORT || 8181;
+const PORT = process.env.PORT || 3000;
 
 var app = express();
 //app.use(cors({ credentials: true, origin: config.get("clientaddress") }));

@@ -30,7 +30,7 @@ export const registerCertificateRegisterRoutes = app => {
 
     app
     .route("/api/certificateregister/getCertificateRegisterByMembershipNumber/:membershipnumber")
-    .get([Auth, certificateRegisterController.getCertificateRegisterByMembershipNumber]);
+    .get([certificateRegisterController.getCertificateRegisterByMembershipNumber]);
 
     app
     .route("/api/certificateregister/getUnSubmittedCertificateRegisterList/:userid")
@@ -43,4 +43,8 @@ export const registerCertificateRegisterRoutes = app => {
     app
     .route("/api/certificateregister/getUnIssuedCertificateRegisterList")
     .get([Auth, certificateRegisterController.getUnIssuedCertificateRegisterList]);
+
+    app
+    .route("/api/certificateregister/getCertificateRegisterList")
+    .get([certificateRegisterController.getCertificateRegisterList]);
 };

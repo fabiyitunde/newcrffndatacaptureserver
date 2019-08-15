@@ -22,6 +22,9 @@ exports.individualforwarderSchema = new mongoose.Schema({
         type: Number,
         enum: [0, 1],
         default: 0
+    },
+    userid: {
+        type: String,
     }
 });
 //# sourceMappingURL=individualforwarder.js.map

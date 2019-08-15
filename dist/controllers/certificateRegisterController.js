@@ -18,8 +18,8 @@ class CertificateRegisterController {
     updateCertificateRegister(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const { mongo_id, membershipnumber, name, category } = req.body;
-                yield updateCertificateRegister_1.updateCertificateRegister(mongo_id, membershipnumber, name, category);
+                const { mongo_id, membershipnumber, name, categorycode, categorydescription, userid } = req.body;
+                yield updateCertificateRegister_1.updateCertificateRegister(mongo_id, membershipnumber, name, categorycode, categorydescription, userid);
                 var returndetail = yield certificateRegisterQueries_1.getCertificateRegisterByMembershipNumber(membershipnumber);
                 res.status(200).json(returndetail);
             }
@@ -107,7 +107,8 @@ class CertificateRegisterController {
     getUnSubmittedCertificateRegisterList(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                var returnlist = yield certificateRegisterQueries_1.getUnSubmittedCertificateRegisterList();
+                const { userid } = req.params;
+                var returnlist = yield certificateRegisterQueries_1.getUnSubmittedCertificateRegisterList(userid);
                 res.status(200).json(returnlist);
             }
             catch (error) {

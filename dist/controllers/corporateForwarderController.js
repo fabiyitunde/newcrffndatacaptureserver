@@ -14,8 +14,8 @@ class CorporateForwarderController {
     updateCorporateForwarder(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const { mongo_id, membershipnumber, companyname } = req.body;
-                yield updateCorporateForwarder_1.updateCorporateForwarder(mongo_id, membershipnumber, companyname);
+                const { mongo_id, membershipnumber, companyname, userid } = req.body;
+                yield updateCorporateForwarder_1.updateCorporateForwarder(mongo_id, membershipnumber, companyname, userid);
                 var returndetail = yield corporateForwarderQueries_1.getCorporateForwarderByMembershipNumber(membershipnumber);
                 res.status(200).json(returndetail);
             }

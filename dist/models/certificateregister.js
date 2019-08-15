@@ -17,8 +17,16 @@ exports.CertificateRegisterSchema = new mongoose.Schema({
     },
     status: {
         type: Number,
-        enum: [0, 1, 2, 3],
-        default: 0
+        enum: [1, 2, 3, 4],
+        default: 1
+    },
+    userid: {
+        type: String,
+        required: true
+    },
+    extracted: {
+        type: Boolean,
+        default: false
     }
 });
 //# sourceMappingURL=certificateregister.js.map

@@ -73,3 +73,8 @@ export const getUnIssuedCertificateRegisterList = async () => {
   });
   return existinglist;
 };
+
+export const getCertificateRegisterList = async () => {
+  var existinglist: any = await CertificateRegister.find({});
+  return existinglist;
+};

@@ -13,7 +13,7 @@ const parameters_1 = require("../../parameters");
 const mongoose = require("mongoose");
 const parameterQueries_1 = require("../../queries/parameterQueries");
 const CoporateData = mongoose.model("CoporateData", coporatedata_1.CoporateDataSchema);
-function createCoporateData(membershipnumber, companyname, category, address, association, email, contactperson, isOperatingAtAirPort, isOperatingAtLandBorder, isOperatingAtSeaPort, operationStartDate, phoneNumber, postalAddress, rCNos, statecode, website) {
+function createCoporateData(membershipnumber, companyname, category, address, association, email, contactperson, isOperatingAtAirPort, isOperatingAtLandBorder, isOperatingAtSeaPort, operationStartDate, phoneNumber, postalAddress, rCNos, statecode, website, userid) {
     return __awaiter(this, void 0, void 0, function* () {
         const existingrecordWithEmail = yield CoporateData.findOne({
             email: email
@@ -26,11 +26,12 @@ function createCoporateData(membershipnumber, companyname, category, address, as
         if (existingrecordWithCRFFNNumber)
             throw "CRFFN Number Already exist.";
         const statelist = yield parameterQueries_1.getStateList();
+        //const categoryobj: any = getCategory(category);
         const existingstate = statelist.find(a => a.code == statecode);
         var newrec = {
             membershipnumber: membershipnumber,
             companyname: companyname,
-            category: category,
+            category: { code: category.code, description: category.description },
             address: address,
             association: association,
             state: { code: existingstate.code, description: existingstate.description },
@@ -44,7 +45,8 @@ function createCoporateData(membershipnumber, companyname, category, address, as
             postalAddress: postalAddress,
             rCNos: rCNos,
             status: parameters_1.dataCaptureRegistrationStatus.Pending,
-            website: website
+            website: website,
+            userid: userid
         };
         var coporatedata = new CoporateData(newrec);
         yield coporatedata.save();

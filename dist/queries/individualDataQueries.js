@@ -18,9 +18,16 @@ exports.getIndividualDataByCRFFNNumber = (membershipnumber) => __awaiter(this, v
     });
     return existingrec;
 });
-exports.getUnSubmittedIndividualDataList = () => __awaiter(this, void 0, void 0, function* () {
+exports.getIndividualDataById = (id) => __awaiter(this, void 0, void 0, function* () {
+    var existingrec = yield IndividualData.findOne({
+        _id: id
+    });
+    return existingrec;
+});
+exports.getUnSubmittedIndividualDataList = (userid) => __awaiter(this, void 0, void 0, function* () {
     var existinglist = yield IndividualData.find({
-        status: parameters_1.dataCaptureRegistrationStatus.Pending
+        status: parameters_1.dataCaptureRegistrationStatus.Pending,
+        userid: userid
     });
     return existinglist;
 });

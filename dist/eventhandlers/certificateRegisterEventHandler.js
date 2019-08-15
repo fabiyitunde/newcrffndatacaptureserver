@@ -25,7 +25,8 @@ exports.certificateRegisterApprovedEventHandler = () => {
 };
 const TreatForwarder = (eventobj) => __awaiter(this, void 0, void 0, function* () {
     var returnobj = yield certificateRegisterQueries_1.getCertificateRegisterByMembershipNumber(eventobj);
-    if (returnobj.category == "Individual") {
+    if (returnobj.category.code == parameters_1.FreightForwaderCategory.Staff
+        || returnobj.category.code == parameters_1.FreightForwaderCategory.Executive) {
         treatIndividualForwarder_1.treatIndividualForwarder(eventobj);
     }
     else {

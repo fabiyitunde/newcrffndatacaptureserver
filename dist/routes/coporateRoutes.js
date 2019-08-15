@@ -23,13 +23,19 @@ exports.registerCoporateRoutes = app => {
         .route("/api/coporate/getCoporateDataByMemebershipId/:membershipnumber")
         .get([auth_1.default, coporateController.getCoporateDataByMemebershipId]);
     app
+        .route("/api/coporate/getCoporateDataById/:id")
+        .get([auth_1.default, coporateController.getCoporateDataById]);
+    app
         .route("/api/coporate/getCoporateMemeberListIssuedCertificates")
-        .post([auth_1.default, coporateController.getCoporateMemeberListIssuedCertificates]);
+        .get([auth_1.default, coporateController.getCoporateMemeberListIssuedCertificates]);
     app
         .route("/api/coporate/getUnApprovedCoporateDataList")
-        .post([auth_1.default, coporateController.getUnApprovedCoporateDataList]);
+        .get([auth_1.default, coporateController.getUnApprovedCoporateDataList]);
     app
-        .route("/api/coporate/getUnSubmittedCoporateDataList")
-        .post([auth_1.default, coporateController.getUnSubmittedCoporateDataList]);
+        .route("/api/coporate/getUnSubmittedCoporateDataList/:userid")
+        .get([auth_1.default, coporateController.getUnSubmittedCoporateDataList]);
+    app
+        .route("/api/coporate/getStatesList")
+        .get([auth_1.default, coporateController.getStatesList]);
 };
 //# sourceMappingURL=coporateRoutes.js.map

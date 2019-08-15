@@ -14,13 +14,14 @@ const submitCorporateData_1 = require("../commands/coporate/submitCorporateData"
 const approveCoporateData_1 = require("../commands/coporate/approveCoporateData");
 const returnCoporateData_1 = require("../commands/coporate/returnCoporateData");
 const coporateDataQueries_1 = require("../queries/coporateDataQueries");
+const ParameterQueries_1 = require("../queries/ParameterQueries");
 const certificateRegisterQueries_1 = require("../queries/certificateRegisterQueries");
 class CoporateController {
     createCoporateData(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const { membershipnumber, companyname, category, address, association, email, contactperson, isOperatingAtAirPort, isOperatingAtLandBorder, isOperatingAtSeaPort, operationStartDate, phoneNumber, postalAddress, rCNos, statecode, website } = req.body;
-                yield createCoporateData_1.createCoporateData(membershipnumber, companyname, category, address, association, email, contactperson, isOperatingAtAirPort, isOperatingAtLandBorder, isOperatingAtSeaPort, operationStartDate, phoneNumber, postalAddress, rCNos, statecode, website);
+                const { membershipnumber, companyname, category, address, association, email, contactperson, isOperatingAtAirPort, isOperatingAtLandBorder, isOperatingAtSeaPort, operationStartDate, phoneNumber, postalAddress, rCNos, statecode, website, userid } = req.body;
+                yield createCoporateData_1.createCoporateData(membershipnumber, companyname, category, address, association, email, contactperson, isOperatingAtAirPort, isOperatingAtLandBorder, isOperatingAtSeaPort, operationStartDate, phoneNumber, postalAddress, rCNos, statecode, website, userid);
                 var returndetail = yield coporateDataQueries_1.getCoporateDataByCRFFNNumber(membershipnumber);
                 res.status(200).json(returndetail);
             }
@@ -93,6 +94,18 @@ class CoporateController {
             }
         });
     }
+    getCoporateDataById(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { id } = req.params;
+                var returnobj = yield coporateDataQueries_1.getCoporateDataById(id);
+                res.status(200).json(returnobj);
+            }
+            catch (error) {
+                res.status(400).send(error);
+            }
+        });
+    }
     getCoporateMemeberListIssuedCertificates(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -107,7 +120,8 @@ class CoporateController {
     getUnSubmittedCoporateDataList(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                var returnlist = yield coporateDataQueries_1.getUnSubmittedCoporateDataList();
+                const { userid } = req.params;
+                var returnlist = yield coporateDataQueries_1.getUnSubmittedCoporateDataList(userid);
                 res.status(200).json(returnlist);
             }
             catch (error) {
@@ -119,6 +133,17 @@ class CoporateController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 var returnlist = yield coporateDataQueries_1.getUnApprovedCoporateDataList();
+                res.status(200).json(returnlist);
+            }
+            catch (error) {
+                res.status(400).send(error);
+            }
+        });
+    }
+    getStatesList(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                var returnlist = yield ParameterQueries_1.getStateList();
                 res.status(200).json(returnlist);
             }
             catch (error) {

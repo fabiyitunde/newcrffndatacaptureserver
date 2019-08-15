@@ -48,4 +48,8 @@ export const registerIndividualRoutes = app => {
     .route("/api/individual/getIndividualDataByMembershipNumber/:membershipnumber")
     .get([individualController.getIndividualDataByMembershipNumber]);
 
+  app
+    .route("/api/individual/uploadIndividualPassportPhoto")
+    .post([Auth, individualController.uploadIndividualPassportPhoto]);
+
 };

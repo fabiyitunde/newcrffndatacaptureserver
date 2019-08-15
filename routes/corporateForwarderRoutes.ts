@@ -5,23 +5,27 @@ export const registerCorporateForwarderRoutes = app => {
     var corporateForwarderController: CorporateForwarderController = new CorporateForwarderController();
 
     app
-    .route("/api/corporateforwarder/updateCorporateForwarder")
-    .post([Auth, corporateForwarderController.updateCorporateForwarder]);
+        .route("/api/corporateforwarder/createCorporateForwarder")
+        .post([Auth, corporateForwarderController.createCorporateForwarder]);
 
     app
-    .route("/api/corporateforwarder/getCorporateForwarderById/:id")
-    .get([Auth, corporateForwarderController.getCorporateForwarderById]);
+        .route("/api/corporateforwarder/updateCorporateForwarder")
+        .post([Auth, corporateForwarderController.updateCorporateForwarder]);
 
     app
-    .route("/api/corporateforwarder/getCorporateForwarderByMembershipNumber/:membershipnumber")
-    .get([Auth, corporateForwarderController.getCorporateForwarderByMembershipNumber]);
+        .route("/api/corporateforwarder/getCorporateForwarderById/:id")
+        .get([Auth, corporateForwarderController.getCorporateForwarderById]);
 
     app
-    .route("/api/corporateforwarder/getUnSubmittedCorporateForwarderList")
-    .get([Auth, corporateForwarderController.getUnSubmittedCorporateForwarderList]);
+        .route("/api/corporateforwarder/getCorporateForwarderByMembershipNumber/:membershipnumber")
+        .get([Auth, corporateForwarderController.getCorporateForwarderByMembershipNumber]);
 
     app
-    .route("/api/corporateforwarder/getForwarderCategoryList")
-    .get([Auth, corporateForwarderController.getForwarderCategoryList]);
+        .route("/api/corporateforwarder/getUnSubmittedCorporateForwarderList")
+        .get([Auth, corporateForwarderController.getUnSubmittedCorporateForwarderList]);
+
+    app
+        .route("/api/corporateforwarder/getForwarderCategoryList")
+        .get([Auth, corporateForwarderController.getForwarderCategoryList]);
 
 };

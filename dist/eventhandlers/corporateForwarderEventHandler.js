@@ -24,9 +24,10 @@ exports.corporateForwarderUpdatedEventHandler = () => {
 const CreateCertificateRegister = (eventobj) => __awaiter(this, void 0, void 0, function* () {
     const body = {
         membershipnumber: eventobj.membershipnumber,
-        companyname: eventobj.companyname,
+        name: eventobj.companyname,
         category: eventobj.category,
+        userid: eventobj.userid
     };
-    createCertificateRegister_1.createCertificateRegister(body.membershipnumber, body.companyname, body.category);
+    createCertificateRegister_1.createCertificateRegister(body.membershipnumber, body.name, body.category, body.userid);
 });
 //# sourceMappingURL=corporateForwarderEventHandler.js.map

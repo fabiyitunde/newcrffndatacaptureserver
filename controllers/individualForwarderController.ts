@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { updateIndividualForwarder } from "../commands/individualforwarder/updateIndividualForwarder";
+import { createIndividualForwarder } from "../commands/individualforwarder/createIndividualForwarder";
 
 import {
     getUnSubmittedIndividualForwarderList,
@@ -9,6 +10,30 @@ import {
 
 
 export class IndividualForwarderController {
+    public async createIndividualForwarder(req: Request, res: Response) {
+        try {
+            const {
+                membershipnumber,
+                surname,
+                firstname,
+                middlename,
+                userid
+            } = req.body;
+
+            await createIndividualForwarder(
+                membershipnumber,
+                surname,
+                firstname,
+                middlename,
+                userid
+            );
+            var returndetail = await getIndividualForwarderByMembershipNumber(membershipnumber);
+            res.status(200).json(returndetail);
+        } catch (error) {
+            res.status(400).send(error);
+        }
+    }
+    
     public async updateIndividualForwarder(req: Request, res: Response) {
         try {
             const {

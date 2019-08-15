@@ -10,12 +10,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = require("mongoose");
 const parameters_1 = require("../models/parameters");
+const parameters_2 = require("../parameters");
 const StateTable = mongoose.model("StateTable", parameters_1.statetableSchema);
 const LGATable = mongoose.model("LGATable", parameters_1.lgatableSchema);
 exports.getStateList = () => __awaiter(this, void 0, void 0, function* () {
     return yield StateTable.find().sort("description");
 });
-exports.getLGAList = () => __awaiter(this, void 0, void 0, function* () {
-    return yield LGATable.find().sort("description");
+exports.getLGAList = (statecode) => __awaiter(this, void 0, void 0, function* () {
+    return yield LGATable.find({ statecode: statecode }).sort("code");
+});
+exports.getCategory = (catid) => __awaiter(this, void 0, void 0, function* () {
+    // return Object.keys(FreightForwaderCategory)
+    //       .filter(key => typeof FreightForwaderCategory[key] === 'number')
+    //       .map(key => ({ id: FreightForwaderCategory[key], name: key }))
+    ////return await LGATable.find().sort("description");
+    return yield parameters_2.FreightForwaderCategory.getDescription(catid);
 });
 //# sourceMappingURL=parameterQueries.js.map

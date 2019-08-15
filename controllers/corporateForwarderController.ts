@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { updateCorporateForwarder } from "../commands/corporateforwarder/updateCorporateForwarder";
+import { createCorporateForwarder } from "../commands/corporateforwarder/createCorporateForwarder";
 
 import {
     getUnSubmittedCorporateForwarderList,
@@ -10,6 +11,26 @@ import {
 
 
 export class CorporateForwarderController {
+
+    public async createCorporateForwarder(req: Request, res: Response) {
+        try {
+            const {
+                membershipnumber,
+                companyname,
+                userid
+            } = req.body;
+
+            await createCorporateForwarder(
+                membershipnumber,
+                companyname,
+                userid
+            );
+            var returndetail = await getCorporateForwarderByMembershipNumber(membershipnumber);
+            res.status(200).json(returndetail);
+        } catch (error) {
+            res.status(400).send(error);
+        }
+    }
     public async updateCorporateForwarder(req: Request, res: Response) {
         try {
             const {
@@ -52,7 +73,7 @@ export class CorporateForwarderController {
     //     }
     // }
 
-    
+
 
     public async getCorporateForwarderById(req: Request, res: Response) {
         try {
@@ -74,7 +95,7 @@ export class CorporateForwarderController {
         }
     }
 
-    
+
 
     public async getUnSubmittedCorporateForwarderList(req: Request, res: Response) {
         try {

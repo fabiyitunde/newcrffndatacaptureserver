@@ -24,9 +24,10 @@ exports.individualForwarderUpdatedEventHandler = () => {
 const CreateCertificateRegister = (eventobj) => __awaiter(this, void 0, void 0, function* () {
     const body = {
         membershipnumber: eventobj.membershipnumber,
-        name: eventobj.name,
+        name: eventobj.surname + " " + eventobj.firstname + " " + eventobj.middlename,
         category: eventobj.category,
+        userid: eventobj.userid
     };
-    createCertificateRegister_1.createCertificateRegister(body.membershipnumber, body.name, body.category);
+    createCertificateRegister_1.createCertificateRegister(body.membershipnumber, body.name, body.category, body.userid);
 });
 //# sourceMappingURL=individualForwarderEventHandler.js.map

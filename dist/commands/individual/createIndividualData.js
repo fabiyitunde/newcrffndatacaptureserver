@@ -13,7 +13,7 @@ const parameters_1 = require("../../parameters");
 const mongoose = require("mongoose");
 const parameterQueries_1 = require("../../queries/parameterQueries");
 const IndividualData = mongoose.model("IndividualData", individualdata_1.IndividualDataSchema);
-function createIndividualData(membershipnumber, title, surname, othernames, category, address, email, phonenumber, statecode, lgacode, typeofid, idcardnumber) {
+function createIndividualData(membershipnumber, title, surname, othernames, category, address, email, phonenumber, statecode, lgacode, typeofid, idcardnumber, userid) {
     return __awaiter(this, void 0, void 0, function* () {
         const existingrecordWithEmail = yield IndividualData.findOne({
             email: email
@@ -26,7 +26,8 @@ function createIndividualData(membershipnumber, title, surname, othernames, cate
         if (existingrecordWithCRFFNNumber)
             throw "CRFFN Number Already exist.";
         const statelist = yield parameterQueries_1.getStateList();
-        const lgalist = yield parameterQueries_1.getLGAList();
+        const lgalist = yield parameterQueries_1.getLGAList(statecode);
+        const categoryobj = parameterQueries_1.getCategory(category);
         const existingstate = statelist.find(a => a.code == statecode);
         const existinglga = lgalist.find(a => a.code == lgacode);
         var newrec = {
@@ -34,7 +35,7 @@ function createIndividualData(membershipnumber, title, surname, othernames, cate
             title: title,
             surname: surname,
             othernames: othernames,
-            category: category,
+            category: { code: category.code, description: category.description },
             address: address,
             email: email,
             phonenumber: phonenumber,
@@ -43,6 +44,7 @@ function createIndividualData(membershipnumber, title, surname, othernames, cate
             typeofid: typeofid,
             idcardnumber: idcardnumber,
             status: parameters_1.dataCaptureRegistrationStatus.Pending,
+            userid: userid
         };
         var individualdata = new IndividualData(newrec);
         yield individualdata.save();

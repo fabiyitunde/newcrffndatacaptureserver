@@ -56,14 +56,16 @@ exports.FreightForwaderCategory = {
                 return "Executive";
             case 3:
                 return "Company";
-            default:
+            case 4:
                 return "ServiceProvider";
+            default:
+                return "";
         }
     },
 };
 exports.forwarderRecordStatus = {
-    Pending: 1,
-    Treated: 2,
+    Pending: 0,
+    Treated: 1,
     getDescription: (value) => {
         switch (value) {
             case 1:
