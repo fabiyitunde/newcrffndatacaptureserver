@@ -9,8 +9,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const updateCorporateForwarder_1 = require("../commands/corporateforwarder/updateCorporateForwarder");
+const createCorporateForwarder_1 = require("../commands/corporateforwarder/createCorporateForwarder");
 const corporateForwarderQueries_1 = require("../queries/corporateForwarderQueries");
 class CorporateForwarderController {
+    createCorporateForwarder(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { membershipnumber, companyname, userid } = req.body;
+                yield createCorporateForwarder_1.createCorporateForwarder(membershipnumber, companyname, userid);
+                var returndetail = yield corporateForwarderQueries_1.getCorporateForwarderByMembershipNumber(membershipnumber);
+                res.status(200).json(returndetail);
+            }
+            catch (error) {
+                res.status(400).send(error);
+            }
+        });
+    }
     updateCorporateForwarder(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {

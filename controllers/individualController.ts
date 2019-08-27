@@ -11,8 +11,9 @@ import {
     getUnSubmittedIndividualDataList,
     getUnApprovedIndividualDataList
 } from "../queries/individualDataQueries";
-import { getStateList, getLGAList } from "../queries/ParameterQueries";
+import { getStateList, getLGAList, getTitleList } from "../queries/ParameterQueries";
 import { getIndividualMemeberListIssuedCertificates } from "../queries/certificateRegisterQueries";
+import { date } from "joi";
 
 
 export class IndividualController {
@@ -31,7 +32,8 @@ export class IndividualController {
                 lgacode,
                 typeofid,
                 idcardnumber,
-                userid
+                userid,
+                dateofbirth
             } = req.body;
 
             await createIndividualData(
@@ -47,7 +49,8 @@ export class IndividualController {
                 lgacode,
                 typeofid,
                 idcardnumber,
-                userid
+                userid,
+                dateofbirth
             );
             var returndetail = await getIndividualDataByCRFFNNumber(membershipnumber);
             res.status(200).json(returndetail);
@@ -70,7 +73,8 @@ export class IndividualController {
                 statecode,
                 lgacode,
                 typeofid,
-                idcardnumber
+                idcardnumber,
+                dateofbirth
             } = req.body;
 
             await updateIndividualData(
@@ -86,7 +90,8 @@ export class IndividualController {
                 statecode,
                 lgacode,
                 typeofid,
-                idcardnumber
+                idcardnumber,
+                dateofbirth
             );
             var returndetail = await getIndividualDataByCRFFNNumber(membershipnumber);
             res.status(200).json(returndetail);
@@ -201,6 +206,15 @@ export class IndividualController {
         }
     }
 
+    public async getTitleList(req: Request, res: Response) {
+        try {
+            var returnlist = await getTitleList();
+            res.status(200).json(returnlist);
+        } catch (error) {
+            res.status(400).send(error);
+        }
+    }
+
     public async uploadIndividualPassportPhoto(req: Request, res: Response) {
         try {
             //const { membershipnumber } = req.body;
@@ -209,10 +223,12 @@ export class IndividualController {
                 membershipnumber,
                 passportphotograph,
             } = req.body;
+            console.log(req.body);
             await uploadIndividualPhoto(mongo_id, membershipnumber, passportphotograph);
             var returndetail = await getIndividualDataByCRFFNNumber(membershipnumber);
             res.status(200).json(returndetail);
         } catch (error) {
+            console.log(error);
             res.status(400).send(error);
         }
     }

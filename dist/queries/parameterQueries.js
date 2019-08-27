@@ -13,6 +13,7 @@ const parameters_1 = require("../models/parameters");
 const parameters_2 = require("../parameters");
 const StateTable = mongoose.model("StateTable", parameters_1.statetableSchema);
 const LGATable = mongoose.model("LGATable", parameters_1.lgatableSchema);
+const TitleTable = mongoose.model("TitleTable", parameters_1.titletableSchema);
 exports.getStateList = () => __awaiter(this, void 0, void 0, function* () {
     return yield StateTable.find().sort("description");
 });
@@ -25,5 +26,8 @@ exports.getCategory = (catid) => __awaiter(this, void 0, void 0, function* () {
     //       .map(key => ({ id: FreightForwaderCategory[key], name: key }))
     ////return await LGATable.find().sort("description");
     return yield parameters_2.FreightForwaderCategory.getDescription(catid);
+});
+exports.getTitleList = () => __awaiter(this, void 0, void 0, function* () {
+    return yield TitleTable.find().sort("code");
 });
 //# sourceMappingURL=parameterQueries.js.map

@@ -12,14 +12,15 @@ const postal = require("postal");
 const parameters_1 = require("../parameters");
 const p_queue_1 = require("p-queue");
 const node_fetch_1 = require("node-fetch");
-const baseurl = "http://185.122.167.222:8011";
+//const baseurl: string = "http://185.122.167.222:8012";
+const baseurl = "http://localhost:4508";
 const queue = new p_queue_1.default({ concurrency: 1 });
 exports.initializeCRFFNCRNSyncronizationHandlers = () => {
     const channel = postal.channel(parameters_1.postalChannels.crffnDataCapture);
     channel.subscribe(parameters_1.postalTopics.coporateDataCaptureApproved, eventobj => {
         queue.add(() => Promise.resolve(syncronizeWithCRFFNCRM(eventobj)).then(() => {
             console.log("Done: Syncronizing With The CRM");
-        }));
+        }).catch(err => console.log(err)));
     });
 };
 const syncronizeWithCRFFNCRM = (eventobj) => __awaiter(this, void 0, void 0, function* () {
@@ -48,6 +49,7 @@ const syncronizeWithCRFFNCRM = (eventobj) => __awaiter(this, void 0, void 0, fun
             "Content-Type": "application/json"
         }
     });
+    //console.log(response.body);
     return response.json();
 });
 //# sourceMappingURL=CRFFNCRMSyncronizationHandler.js.map

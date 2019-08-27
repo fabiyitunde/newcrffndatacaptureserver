@@ -5,6 +5,9 @@ const auth_1 = require("../middleware/auth");
 exports.registerCorporateForwarderRoutes = app => {
     var corporateForwarderController = new corporateForwarderController_1.CorporateForwarderController();
     app
+        .route("/api/corporateforwarder/createCorporateForwarder")
+        .post([auth_1.default, corporateForwarderController.createCorporateForwarder]);
+    app
         .route("/api/corporateforwarder/updateCorporateForwarder")
         .post([auth_1.default, corporateForwarderController.updateCorporateForwarder]);
     app

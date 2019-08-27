@@ -9,8 +9,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const updateIndividualForwarder_1 = require("../commands/individualforwarder/updateIndividualForwarder");
+const createIndividualForwarder_1 = require("../commands/individualforwarder/createIndividualForwarder");
 const individualForwarderQueries_1 = require("../queries/individualForwarderQueries");
 class IndividualForwarderController {
+    createIndividualForwarder(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { membershipnumber, surname, firstname, middlename, userid } = req.body;
+                yield createIndividualForwarder_1.createIndividualForwarder(membershipnumber, surname, firstname, middlename, userid);
+                var returndetail = yield individualForwarderQueries_1.getIndividualForwarderByMembershipNumber(membershipnumber);
+                res.status(200).json(returndetail);
+            }
+            catch (error) {
+                res.status(400).send(error);
+            }
+        });
+    }
     updateIndividualForwarder(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {

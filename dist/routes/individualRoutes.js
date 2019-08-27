@@ -43,5 +43,8 @@ exports.registerIndividualRoutes = app => {
     app
         .route("/api/individual/getIndividualDataByMembershipNumber/:membershipnumber")
         .get([individualController.getIndividualDataByMembershipNumber]);
+    app
+        .route("/api/individual/uploadIndividualPassportPhoto")
+        .post([auth_1.default, individualController.uploadIndividualPassportPhoto]);
 };
 //# sourceMappingURL=individualRoutes.js.map

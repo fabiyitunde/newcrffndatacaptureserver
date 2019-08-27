@@ -90,4 +90,27 @@ exports.userType = {
         }
     }
 };
+exports.TypeOfID = {
+    NationalIdCard: 1,
+    DriversLicense: 2,
+    InternationalPassport: 3,
+    Others: 4,
+    getDescription: (value) => {
+        switch (value) {
+            case 1:
+                return "National Id Card";
+            case 2:
+                return "Drivers License";
+            case 3:
+                return "International Passport";
+            case 4:
+                return "Others";
+            default:
+                return "";
+        }
+    },
+    getList: () => {
+        return Object.keys(exports.TypeOfID);
+    }
+};
 //# sourceMappingURL=parameters.js.map

@@ -14,23 +14,25 @@ const mongoose = require("mongoose");
 const IndividualData = mongoose.model("IndividualData", individualdata_1.IndividualDataSchema);
 function uploadIndividualPhoto(mongo_id, membershipnumber, passportphotograph) {
     return __awaiter(this, void 0, void 0, function* () {
-        const existingrecordByMongoId = yield IndividualData.findOne({
-            _id: mongo_id
-        });
-        // const existingrecordByMembershipNumber: any = await IndividualData.findOne({
-        //   membershipnumber: membershipnumber
+        // const existingrecordByMongoId: any = await IndividualData.findOne({
+        //   _id: mongo_id
         // });
+        const existingrecordByMembershipNumber = yield IndividualData.findOne({
+            membershipnumber: membershipnumber
+        });
         // if (existingrecordByMembershipNumber) {
         //   if (existingrecordByMembershipNumber._id != existingrecordByMongoId._id)
         //     throw "This Membership Number Already Assigned";
         // }
-        if (existingrecordByMongoId.status != parameters_1.dataCaptureRegistrationStatus.Pending)
+        if (existingrecordByMembershipNumber.status != parameters_1.dataCaptureRegistrationStatus.Pending)
             throw "The Record Is No More Pending";
+        //console.log()
         var updaterec = {
             //membershipnumber: membershipnumber,
             passportphotograph: passportphotograph
         };
-        yield IndividualData.findOneAndUpdate({ _id: mongo_id }, updaterec);
+        console.log(updaterec);
+        yield IndividualData.findOneAndUpdate({ membershipnumber: membershipnumber }, updaterec);
     });
 }
 exports.uploadIndividualPhoto = uploadIndividualPhoto;

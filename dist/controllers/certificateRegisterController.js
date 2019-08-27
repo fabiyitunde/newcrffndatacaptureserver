@@ -138,6 +138,17 @@ class CertificateRegisterController {
             }
         });
     }
+    getCertificateRegisterList(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                var returnlist = yield certificateRegisterQueries_1.getCertificateRegisterList();
+                res.status(200).json(returnlist);
+            }
+            catch (error) {
+                res.status(400).send(error);
+            }
+        });
+    }
 }
 exports.CertificateRegisterController = CertificateRegisterController;
 //# sourceMappingURL=certificateRegisterController.js.map

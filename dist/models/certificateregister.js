@@ -27,6 +27,10 @@ exports.CertificateRegisterSchema = new mongoose.Schema({
     extracted: {
         type: Boolean,
         default: false
+    },
+    date: {
+        type: Date,
+        default: Date.now
     }
 });
 //# sourceMappingURL=certificateregister.js.map

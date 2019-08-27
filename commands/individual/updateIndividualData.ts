@@ -2,7 +2,7 @@ import { IndividualDataSchema } from "../../models/individualdata";
 import { dataCaptureRegistrationStatus } from "../../parameters";
 import * as mongoose from "mongoose";
 
-import { getStateList, getLGAList, getCategory } from "../../queries/parameterQueries";
+import { getStateList, getLGAList, getCategory, getTitleList } from "../../queries/parameterQueries";
 const IndividualData = mongoose.model("IndividualData", IndividualDataSchema);
 export async function updateIndividualData(
   mongo_id: string,
@@ -17,7 +17,8 @@ export async function updateIndividualData(
   statecode: string,
   lgacode: string,
   typeofid: string,
-  idcardnumber: string
+  idcardnumber: string,
+  dateofbirth: Date
 ) {
   const existingrecordByMongoId: any = await IndividualData.findOne({
     _id: mongo_id
@@ -34,11 +35,14 @@ export async function updateIndividualData(
   const statelist: any[] = await getStateList();
   const lgalist: any[] = await getLGAList(statecode);
   const categoryobj: any = getCategory(category);
+  const titlelist: any[] = await getTitleList();
+
   const existingstate: any = statelist.find(a => a.code == statecode);
   const existinglga: any = lgalist.find(a => a.code == lgacode);
+  const existingtitle: any = titlelist.find(a => a.code == title);
   var updaterec: any = {
     membershipnumber: membershipnumber,
-    title: title,
+    title: { code: existingtitle.code, description: existingtitle.description },
     surname: surname,
     othernames:  othernames,
     category: { code: category.code, description: category.description},
@@ -50,6 +54,7 @@ export async function updateIndividualData(
     typeofid: typeofid,
     idcardnumber: idcardnumber,
     status: dataCaptureRegistrationStatus.Pending,
+    dateofbirth: dateofbirth
   };
   await IndividualData.findOneAndUpdate({ _id: mongo_id }, updaterec);
 }

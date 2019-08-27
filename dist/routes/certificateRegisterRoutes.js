@@ -24,7 +24,7 @@ exports.registerCertificateRegisterRoutes = app => {
         .get([auth_1.default, certificateRegisterController.getCertificateRegisterById]);
     app
         .route("/api/certificateregister/getCertificateRegisterByMembershipNumber/:membershipnumber")
-        .get([auth_1.default, certificateRegisterController.getCertificateRegisterByMembershipNumber]);
+        .get([certificateRegisterController.getCertificateRegisterByMembershipNumber]);
     app
         .route("/api/certificateregister/getUnSubmittedCertificateRegisterList/:userid")
         .get([auth_1.default, certificateRegisterController.getUnSubmittedCertificateRegisterList]);
@@ -34,5 +34,8 @@ exports.registerCertificateRegisterRoutes = app => {
     app
         .route("/api/certificateregister/getUnIssuedCertificateRegisterList")
         .get([auth_1.default, certificateRegisterController.getUnIssuedCertificateRegisterList]);
+    app
+        .route("/api/certificateregister/getCertificateRegisterList")
+        .get([certificateRegisterController.getCertificateRegisterList]);
 };
 //# sourceMappingURL=certificateRegisterRoutes.js.map

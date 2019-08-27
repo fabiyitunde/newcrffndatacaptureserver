@@ -12,30 +12,32 @@ const postal = require("postal");
 const parameters_1 = require("../parameters");
 const p_queue_1 = require("p-queue");
 const node_fetch_1 = require("node-fetch");
-const baseurl = "http://185.122.167.222:8011";
+//const baseurl: string = "http://185.122.167.222:8012";
+const baseurl = "http://localhost:4508";
 const queue = new p_queue_1.default({ concurrency: 1 });
 exports.initializeIndividualCRMSyncronizationHandlers = () => {
     const channel = postal.channel(parameters_1.postalChannels.crffnDataCapture);
     channel.subscribe(parameters_1.postalTopics.individualDataCaptureApproved, eventobj => {
         queue.add(() => Promise.resolve(syncronizeWithCRFFNCRM(eventobj)).then(() => {
             console.log("Done: Syncronizing With The CRM");
-        }));
+        }).catch(err => console.log(err)));
     });
 };
 const syncronizeWithCRFFNCRM = (eventobj) => __awaiter(this, void 0, void 0, function* () {
     const body = {
-        membershipnumber: eventobj.membershipnumber,
-        title: eventobj.title,
+        crffnnumber: eventobj.membershipnumber,
+        titleid: eventobj.title.code,
         surname: eventobj.surname,
         othernames: eventobj.othernames,
-        category: eventobj.category,
+        category: eventobj.category.code,
         address: eventobj.address,
         email: eventobj.email,
         phonenumber: eventobj.phonenumber,
-        state: eventobj.state.code,
-        lga: eventobj.lga.code,
+        stateid: eventobj.state.code,
+        lgaid: eventobj.lga.code,
         typeofid: eventobj.typeofid,
         idcardnumber: eventobj.idcardnumber,
+        dateofbirth: eventobj.dateofbirth
     };
     var response = yield node_fetch_1.default(`${baseurl}/api/InternalRegistration/RegisterIndividual`, {
         method: "post",
@@ -43,7 +45,15 @@ const syncronizeWithCRFFNCRM = (eventobj) => __awaiter(this, void 0, void 0, fun
         headers: {
             "Content-Type": "application/json"
         }
-    });
+    }); //.catch(err => handleErrors(response));
+    //console.log(response.body);
     return response.json();
 });
+// function handleErrors(response) {
+//   if (!response.ok) {
+//     console.log(response.statusText);
+//       throw Error(response.statusText);
+//   }
+//   return response;
+// }
 //# sourceMappingURL=IndividualCRMSynchronizationHandler.js.map

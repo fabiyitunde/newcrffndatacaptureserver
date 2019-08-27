@@ -21,8 +21,8 @@ class IndividualController {
     createIndividualData(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const { membershipnumber, title, surname, othernames, category, address, email, phonenumber, statecode, lgacode, typeofid, idcardnumber, userid } = req.body;
-                yield createIndividualData_1.createIndividualData(membershipnumber, title, surname, othernames, category, address, email, phonenumber, statecode, lgacode, typeofid, idcardnumber, userid);
+                const { membershipnumber, title, surname, othernames, category, address, email, phonenumber, statecode, lgacode, typeofid, idcardnumber, userid, dateofbirth } = req.body;
+                yield createIndividualData_1.createIndividualData(membershipnumber, title, surname, othernames, category, address, email, phonenumber, statecode, lgacode, typeofid, idcardnumber, userid, dateofbirth);
                 var returndetail = yield individualDataQueries_1.getIndividualDataByCRFFNNumber(membershipnumber);
                 res.status(200).json(returndetail);
             }
@@ -34,8 +34,8 @@ class IndividualController {
     updateIndividualData(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const { mongo_id, membershipnumber, title, surname, othernames, category, address, email, phonenumber, statecode, lgacode, typeofid, idcardnumber } = req.body;
-                yield updateIndividualData_1.updateIndividualData(mongo_id, membershipnumber, title, surname, othernames, category, address, email, phonenumber, statecode, lgacode, typeofid, idcardnumber);
+                const { mongo_id, membershipnumber, title, surname, othernames, category, address, email, phonenumber, statecode, lgacode, typeofid, idcardnumber, dateofbirth } = req.body;
+                yield updateIndividualData_1.updateIndividualData(mongo_id, membershipnumber, title, surname, othernames, category, address, email, phonenumber, statecode, lgacode, typeofid, idcardnumber, dateofbirth);
                 var returndetail = yield individualDataQueries_1.getIndividualDataByCRFFNNumber(membershipnumber);
                 res.status(200).json(returndetail);
             }
@@ -176,16 +176,29 @@ class IndividualController {
             }
         });
     }
+    getTitleList(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                var returnlist = yield ParameterQueries_1.getTitleList();
+                res.status(200).json(returnlist);
+            }
+            catch (error) {
+                res.status(400).send(error);
+            }
+        });
+    }
     uploadIndividualPassportPhoto(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 //const { membershipnumber } = req.body;
                 const { mongo_id, membershipnumber, passportphotograph, } = req.body;
+                console.log(req.body);
                 yield uploadIndividualPhoto_1.uploadIndividualPhoto(mongo_id, membershipnumber, passportphotograph);
                 var returndetail = yield individualDataQueries_1.getIndividualDataByCRFFNNumber(membershipnumber);
                 res.status(200).json(returndetail);
             }
             catch (error) {
+                console.log(error);
                 res.status(400).send(error);
             }
         });

@@ -5,6 +5,9 @@ const auth_1 = require("../middleware/auth");
 exports.registerIndividualForwarderRoutes = app => {
     var individualForwarderController = new individualForwarderController_1.IndividualForwarderController();
     app
+        .route("/api/individualforwarder/createIndividualForwarder")
+        .post([auth_1.default, individualForwarderController.createIndividualForwarder]);
+    app
         .route("/api/individualforwarder/updateIndividualForwarder")
         .post([auth_1.default, individualForwarderController.updateIndividualForwarder]);
     app

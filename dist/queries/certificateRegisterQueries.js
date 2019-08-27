@@ -67,4 +67,8 @@ exports.getUnIssuedCertificateRegisterList = () => __awaiter(this, void 0, void 
     });
     return existinglist;
 });
+exports.getCertificateRegisterList = () => __awaiter(this, void 0, void 0, function* () {
+    var existinglist = yield CertificateRegister.find({});
+    return existinglist;
+});
 //# sourceMappingURL=certificateRegisterQueries.js.map

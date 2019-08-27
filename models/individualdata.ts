@@ -3,7 +3,7 @@ import { RequestError } from "mssql";
 
 export const IndividualDataSchema = new mongoose.Schema({
   title: {
-    type: String,
+    type: { code: String, description: String },
     required: true
   },
   membershipnumber: {
@@ -42,8 +42,8 @@ export const IndividualDataSchema = new mongoose.Schema({
   },
   typeofid: {
     type: Number,
-    enum: [0, 1, 2],
-    default: 0,
+    enum: [1, 2, 3, 4],
+    default: 1,
     required: true
   },
   idcardnumber: {
@@ -65,5 +65,9 @@ export const IndividualDataSchema = new mongoose.Schema({
   },
   passportphotograph:{
     type: String,
+  },
+  dateofbirth: {
+    type: Date,
+    default: Date.now
   }
 });

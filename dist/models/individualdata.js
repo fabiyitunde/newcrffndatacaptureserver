@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = require("mongoose");
 exports.IndividualDataSchema = new mongoose.Schema({
     title: {
-        type: String,
+        type: { code: String, description: String },
         required: true
     },
     membershipnumber: {
@@ -42,8 +42,8 @@ exports.IndividualDataSchema = new mongoose.Schema({
     },
     typeofid: {
         type: Number,
-        enum: [0, 1, 2],
-        default: 0,
+        enum: [1, 2, 3, 4],
+        default: 1,
         required: true
     },
     idcardnumber: {
@@ -65,6 +65,10 @@ exports.IndividualDataSchema = new mongoose.Schema({
     },
     passportphotograph: {
         type: String,
+    },
+    dateofbirth: {
+        type: Date,
+        default: Date.now
     }
 });
 //# sourceMappingURL=individualdata.js.map

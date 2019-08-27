@@ -4,7 +4,8 @@ import PQueue from "p-queue";
 import fetch from "node-fetch";
 import * as mongoose from "mongoose";
 
-const baseurl: string = "http://185.122.167.222:8011";
+//const baseurl: string = "http://185.122.167.222:8012";
+const baseurl: string = "http://localhost:4508";
 
 const queue = new PQueue({ concurrency: 1 });
 export const initializeCRFFNCRNSyncronizationHandlers = () => {
@@ -13,7 +14,7 @@ export const initializeCRFFNCRNSyncronizationHandlers = () => {
     queue.add(() =>
       Promise.resolve(syncronizeWithCRFFNCRM(eventobj)).then(() => {
         console.log("Done: Syncronizing With The CRM");
-      })
+      }).catch(err => console.log(err))
     );
   });
 };
@@ -44,6 +45,6 @@ const syncronizeWithCRFFNCRM = async (eventobj: any) => {
       "Content-Type": "application/json"
     }
   });
-
+  //console.log(response.body);
   return response.json();
 };

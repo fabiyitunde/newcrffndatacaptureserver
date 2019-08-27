@@ -7,7 +7,7 @@ const cors = require("cors");
 const config = require("config");
 const index_1 = require("./routes/index");
 const index_2 = require("./eventhandlers/index");
-const PORT = process.env.PORT || 8181;
+const PORT = process.env.PORT || 3000;
 var app = express();
 //app.use(cors({ credentials: true, origin: config.get("clientaddress") }));
 app.use(cors());
