@@ -45,6 +45,10 @@ export const registerIndividualRoutes = app => {
     .get([Auth, individualController.getLGAList]);
 
   app
+    .route("/api/individual/getTitleList")
+    .get([Auth, individualController.getTitleList]);
+
+  app
     .route("/api/individual/getIndividualDataByMembershipNumber/:membershipnumber")
     .get([individualController.getIndividualDataByMembershipNumber]);
 
