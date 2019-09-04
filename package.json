@@ -58,7 +58,13 @@
     "stack-typescript": "^1.0.4",
     "tls": "0.0.1",
     "uniqid": "^5.0.3",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+
+    "@types/node": "^7.0.12",
+    "jest": "^22.2.2",
+    "supertest": "^3.0.0",
+    "ts-node": "^3.0.2",
+    "typescript": "^3.2.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
