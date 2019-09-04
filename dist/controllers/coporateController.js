@@ -14,7 +14,7 @@ const submitCorporateData_1 = require("../commands/coporate/submitCorporateData"
 const approveCoporateData_1 = require("../commands/coporate/approveCoporateData");
 const returnCoporateData_1 = require("../commands/coporate/returnCoporateData");
 const coporateDataQueries_1 = require("../queries/coporateDataQueries");
-const ParameterQueries_1 = require("../queries/ParameterQueries");
+const parameterQueries_1 = require("../queries/parameterQueries");
 const certificateRegisterQueries_1 = require("../queries/certificateRegisterQueries");
 class CoporateController {
     createCoporateData(req, res) {
@@ -143,7 +143,7 @@ class CoporateController {
     getStatesList(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                var returnlist = yield ParameterQueries_1.getStateList();
+                var returnlist = yield parameterQueries_1.getStateList();
                 res.status(200).json(returnlist);
             }
             catch (error) {

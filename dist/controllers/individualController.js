@@ -15,7 +15,7 @@ const approveIndividualData_1 = require("../commands/individual/approveIndividua
 const returnIndividualData_1 = require("../commands/individual/returnIndividualData");
 const uploadIndividualPhoto_1 = require("../commands/individual/uploadIndividualPhoto");
 const individualDataQueries_1 = require("../queries/individualDataQueries");
-const ParameterQueries_1 = require("../queries/ParameterQueries");
+const parameterQueries_1 = require("../queries/parameterQueries");
 const certificateRegisterQueries_1 = require("../queries/certificateRegisterQueries");
 class IndividualController {
     createIndividualData(req, res) {
@@ -156,7 +156,7 @@ class IndividualController {
     getStatesList(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                var returnlist = yield ParameterQueries_1.getStateList();
+                var returnlist = yield parameterQueries_1.getStateList();
                 res.status(200).json(returnlist);
             }
             catch (error) {
@@ -168,7 +168,7 @@ class IndividualController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const { statecode } = req.params;
-                var returnlist = yield ParameterQueries_1.getLGAList(statecode);
+                var returnlist = yield parameterQueries_1.getLGAList(statecode);
                 res.status(200).json(returnlist);
             }
             catch (error) {
@@ -179,7 +179,7 @@ class IndividualController {
     getTitleList(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                var returnlist = yield ParameterQueries_1.getTitleList();
+                var returnlist = yield parameterQueries_1.getTitleList();
                 res.status(200).json(returnlist);
             }
             catch (error) {

@@ -11,7 +11,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const certificateregister_1 = require("../../models/certificateregister");
 const parameters_1 = require("../../parameters");
 const mongoose = require("mongoose");
-const ParameterQueries_1 = require("../../queries/ParameterQueries");
+const parameterQueries_1 = require("../../queries/parameterQueries");
 const CertificateRegister = mongoose.model("CertificateRegister", certificateregister_1.CertificateRegisterSchema);
 function createCertificateRegister(membershipnumber, name, category, userid) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -20,7 +20,7 @@ function createCertificateRegister(membershipnumber, name, category, userid) {
         });
         if (existingrecordWithCRFFNNumber)
             throw "CRFFN Number Already exist.";
-        const categoryobj = ParameterQueries_1.getCategory(category);
+        const categoryobj = parameterQueries_1.getCategory(category);
         var newrec = {
             membershipnumber: membershipnumber,
             name: name,
