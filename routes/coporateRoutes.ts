@@ -20,7 +20,7 @@ export const registerCoporateRoutes = app => {
     .post([Auth, coporateController.approveCoporateData]);
   app
     .route("/api/coporate/getCoporateDataByMemebershipId/:membershipnumber")
-    .get([Auth, coporateController.getCoporateDataByMemebershipId]);
+    .get([coporateController.getCoporateDataByMemebershipId]);
 
   app
     .route("/api/coporate/getCoporateDataById/:id")
