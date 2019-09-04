@@ -41,6 +41,9 @@ exports.registerIndividualRoutes = app => {
         .route("/api/individual/getLGAList/:statecode")
         .get([auth_1.default, individualController.getLGAList]);
     app
+        .route("/api/individual/getTitleList")
+        .get([auth_1.default, individualController.getTitleList]);
+    app
         .route("/api/individual/getIndividualDataByMembershipNumber/:membershipnumber")
         .get([individualController.getIndividualDataByMembershipNumber]);
     app

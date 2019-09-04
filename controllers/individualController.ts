@@ -11,7 +11,7 @@ import {
     getUnSubmittedIndividualDataList,
     getUnApprovedIndividualDataList
 } from "../queries/individualDataQueries";
-import { getStateList, getLGAList, getTitleList } from "../queries/ParameterQueries";
+import { getStateList, getLGAList, getTitleList } from "../queries/parameterQueries";
 import { getIndividualMemeberListIssuedCertificates } from "../queries/certificateRegisterQueries";
 import { date } from "joi";
 

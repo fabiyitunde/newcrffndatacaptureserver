@@ -21,7 +21,7 @@ exports.registerCoporateRoutes = app => {
         .post([auth_1.default, coporateController.approveCoporateData]);
     app
         .route("/api/coporate/getCoporateDataByMemebershipId/:membershipnumber")
-        .get([auth_1.default, coporateController.getCoporateDataByMemebershipId]);
+        .get([coporateController.getCoporateDataByMemebershipId]);
     app
         .route("/api/coporate/getCoporateDataById/:id")
         .get([auth_1.default, coporateController.getCoporateDataById]);

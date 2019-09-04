@@ -1,7 +1,7 @@
 import { CertificateRegisterSchema } from "../../models/certificateregister";
 import { CertificateRegisterStatus } from "../../parameters";
 import * as mongoose from "mongoose";
-import { getCategory } from "../../queries/ParameterQueries";
+import { getCategory } from "../../queries/parameterQueries";
 
 const CertificateRegister = mongoose.model("CertificateRegister", CertificateRegisterSchema);
 export async function createCertificateRegister(

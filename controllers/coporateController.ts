@@ -10,7 +10,7 @@ import {
   getUnSubmittedCoporateDataList,
   getUnApprovedCoporateDataList
 } from "../queries/coporateDataQueries";
-import { getStateList } from "../queries/ParameterQueries";
+import { getStateList } from "../queries/parameterQueries";
 import { getCoporateMemeberListIssuedCertificates } from "../queries/certificateRegisterQueries";
 import * as fs from "fs";
 import * as multiparty from "multiparty";
