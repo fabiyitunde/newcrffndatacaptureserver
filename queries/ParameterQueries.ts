@@ -1,6 +1,6 @@
 import * as mongoose from "mongoose";
 import { statetableSchema, lgatableSchema, titletableSchema } from "../models/parameters";
-import {FreightForwaderCategory} from "../parameters"
+import { FreightForwaderCategory } from "../parameters"
 
 
 const StateTable = mongoose.model("StateTable", statetableSchema);

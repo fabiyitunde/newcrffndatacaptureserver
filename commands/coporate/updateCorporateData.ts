@@ -1,7 +1,6 @@
 import { CoporateDataSchema } from "../../models/coporatedata";
 import { dataCaptureRegistrationStatus } from "../../parameters";
 import * as mongoose from "mongoose";
-
 import { getStateList, getCategory } from "../../queries/parameterQueries";
 const CoporateData = mongoose.model("CoporateData", CoporateDataSchema);
 export async function updateCorporateData(
