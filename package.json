@@ -77,8 +77,8 @@
     "heroku-postbuild": "tsc"
   },
   "engines": {
-    "node": "8.9.3",
-    "npm": "6.9.0"
+    "node": "8.9.4",
+    "npm": "6.5.0"
   },
   "devDependencies": {
     "@types/node": "^7.0.12",
