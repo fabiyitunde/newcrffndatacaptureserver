@@ -73,8 +73,7 @@
     "dev": "ts-node ./app/server.ts",
     "start": "node ./dist/server.js",
     "prod": "npm run build && npm run start",
-    "dev:ts": "nodemon",
-    "heroku-postbuild": "tsc"
+    "dev:ts": "nodemon"
   },
   "engines": {
     "node": "8.9.4",
